@@ -1,1 +1,1 @@
-# student-management-system-fe
+# Student Management System
