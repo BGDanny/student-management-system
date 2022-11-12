@@ -1,0 +1,47 @@
+.StudentLoginHeader{
+   text-align: center;
+   
+}
+.MainDiv{
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(91, 111, 128);
+    padding-bottom: 361px;
+    
+ 
+
+}
+
+.rect{
+  
+    background-color: rgb(137, 144, 158);
+
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle; 
+    margin-top: 300px;
+      height: 300px;
+    width: 500px;
+    border-radius: 15px 50px 30px 5px
+
+   
+
+}
+
+.button{
+text-align: center;
+}
+
+
+
+
+.UsernameText{
+ 
+    /* padding-left: 200px; */
+}
