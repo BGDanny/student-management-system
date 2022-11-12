@@ -8,9 +8,28 @@ function Login(){
     const [password, setPassword] = useState("");
 
 
-    const submitHandler = (e) => {
+    async function submitHandler (e) {
         e.preventDefault(); 
-        console.log(email,password);
+        const response = await fetch('http://localhost:5000/api/students/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+                email
+            }),
+        })
+
+        const data = await response.json();
+
+        if(data.found)
+        {
+            alert("Login Successfull");
+        }
+        else {
+            alert("Wrong Email and Password");
+        }
+        console.log(data);
     };
 return  (
 
