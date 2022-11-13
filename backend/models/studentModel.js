@@ -1,44 +1,50 @@
 const mongoose = require("mongoose");
 
-
-const studentSchema = {
-    _id: {
-        type: Number
-    },
+    
+const studentSchema = new mongoose.Schema({
     name: {
         type: String,
+        required:true
     },
     email: {
-        type: String
+        type: String,
+        required:true,
+        unique: true
     },
     phone_Number: {
         type: String
     },
     address: {
-        type: String
+        type: String,
+        required:true
     },
     password: {
-        type: String
+        type: String,
+        required:true
     },
     department_id: {
-        type: String
+        type: String,
+        default: "1121"
     },
     sections: [{
-        type: Number
+        type: Object,
+        ref:'Section',
+        default: []
     }],
-    fees: [{
-        _receipt_Number: {
-            type: Number
-        },
-        tution_Fee: {
-            type: String
-        },
-        date_of_Receipt: {
-            type: Date
-        }
-    }]
-};
+    fees: {
+            tution_Fee: {
+                type: String,
+                default: " "
+            },
+            date_of_Receipt: {
+                type: Date,
+                default: null
+        } 
+    },
+},
+    {collection: 'student'}
+);
 
-const Student = mongoose.model('Model', studentSchema, 'student');
+const Student = mongoose.model('Student', studentSchema);
 
 module.exports = Student;

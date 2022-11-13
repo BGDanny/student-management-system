@@ -1,4 +1,4 @@
-import Login from "./components/Login";
+import Login from "./Routes/Login";
 import StudentMainPage from "./components/StudentMainPage";
 
 import { 
@@ -11,10 +11,9 @@ import {
 function App() {
   return (
    
-
-  
-<Login></Login>
-
+  <Routes>
+  <Route path="/studentLogin" element= {<Login />} />
+  </Routes>
 
 
 
