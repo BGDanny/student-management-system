@@ -1,16 +1,17 @@
-import './Login.css'
+import './AdminLogin.css'
 
 import {Link} from "react-router-dom";
-import { useState } from 'react';
+import {useState} from 'react';
 import React from 'react';
-function Login(){
+
+function AdminLogin(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
 
     async function submitHandler (e) {
         e.preventDefault(); 
-        const response = await fetch('http://localhost:5000/api/students/login', {
+        const response = await fetch('http://localhost:5000/api/admin/login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
@@ -25,7 +26,7 @@ function Login(){
         if(data.found)
         {
             alert("Login Successfull");
-            window.location.href = "/studentMainPage";
+            window.location.href = "/adminMainPage";
         }
         else {
             alert("Wrong Email and Password");
@@ -36,13 +37,13 @@ return  (
 
 
 
-<div className='MainDiv'>
+<div className='TopDiv'>
 
-    <div className ="rect">
-  
+    <div className ="BottomDiv">
 
     <form onSubmit={submitHandler}>
-    <h1 className='StudentLoginHeader'>Student Login</h1>
+    <h1 className='AdminLoginHeader'>Admin Login</h1>
+
 
         <label className="UsernameText">Username</label>
         <br/>
@@ -66,21 +67,14 @@ return  (
 
         <div className='col-md-12 text-center'>
        
-        <button className ="btn btn-dark button" type="submit">Sumbit</button>
+        <button className ="btn btn-dark button" type="submit">Submit</button>
       
         </div>
-        
-
-
-
-
-    
     </form>
     </div>
- 
 </div>
 
 );
 }
 
-export default Login;
+export default AdminLogin;
