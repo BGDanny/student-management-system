@@ -1,6 +1,7 @@
 const asynHandler  = require("express-async-handler");
 const Student = require("../models/studentModel");
 const Section = require("../models/sectionModel");
+const Course = require("../models/courseModel");
 
 const loginStudent = asynHandler(async (req, res) => {
 
@@ -87,7 +88,7 @@ const individualStudentData = asynHandler(async (req, res) => {
 })
 
 const getEnrolledSections = asynHandler (async (req, res) => {
-    Student.findById(req.params.id).populate('sections').exec(function (err, sections)
+    Student.findById(req.params.id).populate('sections').exec(async function (err, sections)
     {
         if(err)
         {
@@ -100,4 +101,58 @@ const getEnrolledSections = asynHandler (async (req, res) => {
     })
 }) 
 
-module.exports = {loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections};
+
+const getFees = asynHandler( async (req, res) => {
+    Student.findById(req.params.id).exec(function(err, fees)
+    {
+        if(err)
+        {
+            res.json(err)
+        }
+        else 
+        {
+            res.json(fees.fees);
+        }
+    })
+})
+
+
+const getCourses = asynHandler(async (req, res) => {
+    Student.findById(req.params.id).populate({ path: 'sections', 
+        populate:{
+            path: 'course_id',
+            model: 'Course'
+        }}).exec(async function (err, sections)
+    {
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {   
+            const sects = sections.sections;
+            const courss = sects.map(obj => obj.course_id);
+            res.json(courss);
+        }
+    })
+})
+
+const updateFees = asynHandler(async (req, res) => {
+    let id = req.params.id;
+    const { fees } = req.body;
+
+    Student.findOneAndUpdate({_id: id}, {$set:{'fees.tution_Fee': fees, 'fees.date_of_Receipt': new Date()}}).exec(function(err)
+    {
+        if(err)
+        {
+            res.json(err);
+        }
+        else 
+        {
+            res.json("Update Successfull");
+        }
+    })
+}) 
+
+
+module.exports = {loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees};

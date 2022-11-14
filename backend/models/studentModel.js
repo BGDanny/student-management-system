@@ -38,7 +38,7 @@ const studentSchema = new mongoose.Schema({
             },
             date_of_Receipt: {
                 type: Date,
-                default: null
+                default: new Date()
         } 
     },
 },

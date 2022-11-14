@@ -22,7 +22,8 @@ const sectionSchema = new mongoose.Schema({
         ref: 'Student'
     }],
     course_id: {
-        type: Number
+        type: Number,
+        ref: 'Course'
     },
 },
     {collection: 'section'}
