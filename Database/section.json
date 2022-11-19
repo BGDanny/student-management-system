@@ -1,0 +1,35 @@
+db.section.insertMany([
+  {
+    _id: 1,
+    year: 2022,
+    semester: "Fall",
+    instructor: "Smith",
+    day: "Friday",
+    students_id: [ObjectId("6377f37d1721db0b944ba451"),  ObjectId("6377f37d1721db0b944ba452")],
+    course_id: 111,
+    start_time: 11,
+    end_time: 14
+  },
+  {
+    _id: 2,
+    year: 2022,
+    semester: "Fall",
+    instructor: "Henry",
+    day: "Thursday",
+    students_id: [ObjectId("6377f37d1721db0b944ba451")],
+    course_id: 112,
+    start_time: 9,
+    end_time: 12
+  },
+  {
+    _id: 3,
+    year: 2022,
+    semester: "Fall",
+    instructor: "Mark",
+    day: "Monday",
+    students_id: [ObjectId("6377f37d1721db0b944ba452")],
+    course_id: 114,
+    start_time: 14,
+    end_time: 17
+  }
+  ]);

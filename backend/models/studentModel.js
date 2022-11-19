@@ -41,6 +41,17 @@ const studentSchema = new mongoose.Schema({
                 default: new Date()
         } 
     },
+    Grades: [{
+        letter_grade: {
+            type: String,
+            default: null
+        },
+        course_id: {
+            type: Number,
+            ref: 'Course',
+            unique: true
+        }
+    }]
 },
     {collection: 'student'}
 );

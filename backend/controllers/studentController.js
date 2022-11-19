@@ -2,6 +2,7 @@ const asynHandler  = require("express-async-handler");
 const Student = require("../models/studentModel");
 const Section = require("../models/sectionModel");
 const Course = require("../models/courseModel");
+const Post = require("../models/postModel");
 
 const loginStudent = asynHandler(async (req, res) => {
 
@@ -58,8 +59,6 @@ const registerStudent = asynHandler(async (req, res) => {
             res.json("created");
         }
     });
-  
-
     }catch(err)
     {
         res.json({status: "error", error:'Duplicate email'});
@@ -154,5 +153,127 @@ const updateFees = asynHandler(async (req, res) => {
     })
 }) 
 
+const getGrades = asynHandler(async (req, res) => {
+    console.log(req.params.id);
+    Student.findById(req.params.id).populate({ path: 'Grades', 
+        populate:{
+            path: 'course_id',
+            model: 'Course'
+        }}).exec(async function (err, grades)
+    {
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {   
+            res.json(grades.Grades);
+        }
+    })
+}) 
 
-module.exports = {loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees};
+
+const searchCourse = asynHandler(async (req, res) => {
+    Course.findOne(req.body.name).exec(async function (err, course)
+    {
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {   
+            const courseId = course._id;
+            Section.findOne({courseId}).populate('course_id').exec(async function (err, section) {
+                if(err)
+                {
+                    res.json(err);
+                }
+                else
+                {   
+                    res.json(section);
+                }
+            })
+        }
+    })
+    
+}) 
+
+
+const addCourse = asynHandler( async (req, res) => {
+    Student.findOneAndUpdate({_id: req.params.id}, {$push: {sections: req.body.section}}).exec(async function(err)
+    {
+        if(err)
+        {
+            res.json(err);
+        }
+        else 
+        {
+            Section.findOneAndUpdate({_id: req.body.section}, {$push: {students_id: req.params.id}}).exec(async function(err)
+            {
+                if(err)
+                {
+                    res.json(err);
+                }
+                else 
+                {
+                    res.json("added Successfully");
+                }
+            })
+        }
+    })
+})
+
+const removeCourse = asynHandler(async (req, res) => {
+    Student.findOneAndUpdate({_id: req.params.id}, {$pull: {sections: req.body.section}}).exec(async function(err)
+    {
+        if(err)
+        {
+            res.json(err);
+        }
+        else 
+        {
+            Section.findOneAndUpdate({_id: req.body.section}, {$pull: {students_id: req.params.id}}).exec(async function(err)
+            {
+                if(err)
+                {
+                    res.json(err);
+                }
+                else 
+                {
+                    res.json("removed Successfully");
+                }
+            })
+        }
+    })
+})
+
+
+const replyPost = asynHandler(async (req, res) => {
+    console.log(req.params.id);
+    const postID = req.params.id;
+    Post.findOneAndUpdate({_id: req.params.id}, {$push: {replies: req.body.content}}).exec(async function(err)
+    {
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            const PostExits = await Post.findOne({_id: postID});
+            console.log(PostExits);
+            if(PostExits)
+            {
+            res.json("Reply Added Successfully");
+            }
+            else
+            {
+            res.json("Post doesnot exits");
+            }
+        }
+    })
+})
+
+
+
+
+module.exports = {loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost};

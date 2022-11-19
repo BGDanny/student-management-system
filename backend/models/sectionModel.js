@@ -9,6 +9,10 @@ const sectionSchema = new mongoose.Schema({
         type: Number,
         required:true
     },
+    semester: {
+        type: String,
+        required: true
+    },
     instructor: {
         type: String,
         required: true
@@ -19,12 +23,22 @@ const sectionSchema = new mongoose.Schema({
     },
     students_id: [{
         type: Object,
-        ref: 'Student'
+        ref: 'Student',
+        default: []
     }],
     course_id: {
         type: Number,
-        ref: 'Course'
+        ref: 'Course',
+        required: true
     },
+    start_time: {
+        type: Number,
+        required: true
+    },
+    end_time: {
+        type: Number,
+        required: true
+    }
 },
     {collection: 'section'}
 );

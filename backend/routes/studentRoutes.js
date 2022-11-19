@@ -1,5 +1,5 @@
 const express = require('express');
-const { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees} = require('../controllers/studentController');
+const { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost} = require('../controllers/studentController');
 
 const router = express.Router();
 
@@ -11,6 +11,10 @@ router.route('/sections/:id').get(getEnrolledSections);
 router.route('/fees/:id').get(getFees);
 router.route('/courses/:id').get(getCourses);
 router.route('/fees/:id').put(updateFees);
-
+router.route('/grades/:id').get(getGrades);
+router.route('/searchCourses/:name').get(searchCourse);
+router.route('/sections/:id').put(addCourse);
+router.route('/sections/:id').delete(removeCourse);
+router.route('/replyPosts/:id').put(replyPost);
 
 module.exports = router;

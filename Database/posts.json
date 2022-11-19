@@ -1,0 +1,14 @@
+db.posts.insertMany([
+  {
+    post_title: "Question 1",
+    post_description: "Help with account setup",
+    replies: [
+      "reply1", "reply2"]
+  },
+  {
+    post_title: "Question 2",
+    post_description: "Help with tution Fee",
+    replies: [
+      "reply 1", "reply 2"]
+    }
+  ]);
