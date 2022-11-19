@@ -17,4 +17,10 @@ router.route('/sections/:id').put(addCourse);
 router.route('/sections/:id').delete(removeCourse);
 router.route('/replyPosts/:id').put(replyPost);
 
+//End Points needed
+//getAllPosts
+//Create Posts
+//Edit Student Personal Information
+//Add new grade to each student
+
 module.exports = router;
