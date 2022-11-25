@@ -274,6 +274,67 @@ const replyPost = asynHandler(async (req, res) => {
 })
 
 
+const allPosts = asynHandler(async (req, res) => {
+    const data = await Post.find();
+    console.l
+    res.json(data);
+})
 
 
-module.exports = {loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost};
+
+const createPost = asynHandler(async (req, res) => {
+    const { id, post_title, post_description } = req.body;
+
+    try {
+        const post = new Post({
+            _id: id,
+            post_title: post_title,
+            post_description: post_description,
+            replies: []
+        })
+        console.log(post);
+        post.save(function (err) {
+            if (err) {
+                res.json({ status: "error", error: 'Error posting' });
+            }
+            else {
+                res.json("created post");
+            }
+        });
+    } catch (err) {
+        res.json({ status: "error", error: 'Error posting' });
+    }
+})
+
+
+const editStudent = asynHandler(async (req, res) => {
+    console.log(req.params.id);
+    const { email, phone_Number, address } = req.body;
+    Student.findOneAndUpdate({ _id: req.params.id }, { $set: { 'email': email, 'phone_Number': phone_Number, 'address': address } }).exec(async function (err) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+
+            res.json("Edit Made Successfully");
+
+        }
+    })
+})
+
+const addGrades = asynHandler(async (req, res) => {
+    Student.findOneAndUpdate({ _id: req.params.id }, { $push: { Grades: { 'letter_grade': req.body.letter_grade, course_id: req.body.course_id } } }).exec(async function (err) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json("added grade successfully");
+        }
+    })
+})
+
+
+
+
+
+module.exports = { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades};
