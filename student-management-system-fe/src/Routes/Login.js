@@ -1,9 +1,7 @@
-import './Login.css'
-
-import {Link} from "react-router-dom";
-import { useState } from 'react';
-import React from 'react';
-function Login(){
+import "./Login.css";
+import { useState } from "react";
+import React from "react";
+function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -27,20 +25,15 @@ function Login(){
 
         const data = await response.json();
 
-        if(data.found)
-        {
+        if (data.found) {
             alert("Login Successfull");
-            window.location.href = "/studentMainPage";
-        }
-        else {
+            window.location.href = "/studentPage";
+        } else {
             alert("Wrong Email and Password");
         }
         console.log(data);
-    };
-return  (
-
-
-
+    }
+    return (
 <div className='flex items-center h-screen w-full MainDiv '>
        <button  className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded BackButton " onClick={backHandler}> Back</button>
 

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useState} from 'react';
 import React from 'react';
 
-function AdminLogin(){
+function GpaCalculator(){
      
 let [credits1, setCredits1] = useState('');
 let [credits2, setCredits2] = useState('');
@@ -258,4 +258,4 @@ return(
 )}
 
 
-export default AdminLogin;
+export default GpaCalculator;

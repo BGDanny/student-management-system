@@ -19,29 +19,25 @@ function AdminLogin(){
         const response = await fetch('http://localhost:5000/api/admin/login', {
             method: 'POST',
             headers: {
-                'Content-Type' : 'application/json',
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email, password
+                email,
+                password,
             }),
-        })
+        });
 
         const data = await response.json();
 
-        if(data.found)
-        {
+        if (data.found) {
             alert("Login Successfull");
             window.location.href = "/adminMainPage";
-        }
-        else {
+        } else {
             alert("Wrong Email and Password");
         }
         console.log(data);
-    };
-return  (
-
-
-
+    }
+    return (
 <div className='flex items-center h-screen w-full TopDiv '>
 <button  className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded BackButton " onClick={backHandler}> Back</button>
         <div className='w-full rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto Bottomdiv'>
