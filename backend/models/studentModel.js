@@ -31,6 +31,20 @@ const studentSchema = new mongoose.Schema({
         ref:'Section',
         default: []
     }],
+    loan: [{
+        year: {
+        type: Number,
+        default: 0
+        },
+        start_Date: {
+            type: String,
+            default: " "
+        },
+        end_Date: {
+            type: String,
+            default: " "
+        }
+    }],
     fees: {
             tution_Fee: {
                 type: String,

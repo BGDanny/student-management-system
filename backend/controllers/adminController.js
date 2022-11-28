@@ -36,7 +36,7 @@ const loginAdmin = asynHandler(async (req, res) => {
 });
 
 const addSection = asynHandler(async (req, res) => {
-    const{id, year,semester, instructor, day, courseId} = req.body;
+    const{id, year,semester, instructor, day, location, courseId, startTime, endTime} = req.body;
 
     try{
         const section = new Section ({
@@ -46,7 +46,10 @@ const addSection = asynHandler(async (req, res) => {
             instructor: instructor,
             day: day,
             students_id: [],
-            course_id: courseId
+            location: location,
+            course_id: courseId,
+            start_time: startTime,
+            end_time: endTime
         })
         console.log(section);
     section.save(function(err)

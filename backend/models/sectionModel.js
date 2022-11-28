@@ -26,6 +26,10 @@ const sectionSchema = new mongoose.Schema({
         ref: 'Student',
         default: []
     }],
+    location : {
+        type: String,
+        required : true
+    },
     course_id: {
         type: Number,
         ref: 'Course',

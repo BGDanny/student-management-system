@@ -11,11 +11,13 @@ const loginStudent = asynHandler(async (req, res) => {
     if(userExits)
     {
             let userPassword = userExits.password;
-            
+            let userId = userExits.id;
+            console.log(userId);
             if(password == userPassword)
             {
             res.json({
-            found: true
+            found: true,
+            id: userId
             })
             }
             else
@@ -87,7 +89,9 @@ const individualStudentData = asynHandler(async (req, res) => {
 })
 
 const getEnrolledSections = asynHandler (async (req, res) => {
-    Student.findById(req.params.id).populate('sections').exec(async function (err, sections)
+    Student.findById(req.params.id).populate({path:'sections', model: 'Section', populate: {
+            path: 'course_id', model: 'Course'
+    }}).exec(async function (err, sections)
     {
         if(err)
         {
@@ -174,22 +178,29 @@ const getGrades = asynHandler(async (req, res) => {
 
 
 const searchCourse = asynHandler(async (req, res) => {
-    Course.findOne(req.body.name).exec(async function (err, course)
+    let nm = req.params.name
+
+    Course.findOne({course_Name: nm}).exec(async function (err, course)
     {
         if(err)
         {
             console.log(err);
         }
-        else
-        {   
-            const courseId = course._id;
-            Section.findOne({courseId}).populate('course_id').exec(async function (err, section) {
+        else if(course == null)
+        {
+            res.json(null);
+        }   
+        else{   
+                const courseId = course._id;
+
+            Section.findOne({course_id: courseId}).populate('course_id').exec(async function (err, section) {
                 if(err)
                 {
                     res.json(err);
                 }
                 else
                 {   
+                    console.log(section);
                     res.json(section);
                 }
             })

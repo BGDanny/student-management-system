@@ -29,18 +29,21 @@ export const Nav = () => {
                 Dashboard
             </Button>
             <Button leftIcon={<MdMenuBook />} onClick={handleClick(1)}>
-                All courses
+                All Courses
             </Button>
-            <Button leftIcon={<MdAttachMoney />} onClick={handleClick(2)}>
+            <Button leftIcon={<MdMenuBook />} onClick={handleClick(2)}>
+                Enroll Courses
+            </Button>
+            <Button leftIcon={<MdAttachMoney />} onClick={handleClick(3)}>
                 Finance
             </Button>
-            <Button leftIcon={<MdChatBubbleOutline />} onClick={handleClick(3)}>
+            <Button leftIcon={<MdChatBubbleOutline />} onClick={handleClick(4)}>
                 Discussions
             </Button>
-            <Button leftIcon={<BsCalculatorFill />} onClick={handleClick(4)}>
+            <Button leftIcon={<BsCalculatorFill />} onClick={handleClick(5)}>
                 GPA Calculator
             </Button>
-            <Button leftIcon={<MdSettings />} onClick={handleClick(5)}>
+            <Button leftIcon={<MdSettings />} onClick={handleClick(6)}>
                 Edit Account
             </Button>
         </Flex>

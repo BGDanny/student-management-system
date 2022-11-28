@@ -24,7 +24,7 @@ function Login() {
         })
 
         const data = await response.json();
-
+        localStorage.setItem('id', data.id);
         if (data.found) {
             alert("Login Successfull");
             window.location.href = "/studentPage";

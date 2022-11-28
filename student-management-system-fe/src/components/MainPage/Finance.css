@@ -1,0 +1,35 @@
+.display-tution {
+    height: 100px;
+    width: 60%;
+    margin: auto;
+    margin-top: 10%;
+    background-color: #D6EAF8;
+    border-radius:25px;
+}
+
+
+.tution-Balance {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: auto;
+    padding-top: 5%;
+}
+
+.account-header {
+    text-align: center;
+    font-weight: bold;
+}
+
+.display-loan {
+    background-color: #F5CBA7;
+    margin-top: 10%;
+    border-radius: 25px;
+}
+
+
+.display-payment {
+    background-color: #D4EFDF;
+    margin-top: 10%;
+    border-radius: 25px;
+}
