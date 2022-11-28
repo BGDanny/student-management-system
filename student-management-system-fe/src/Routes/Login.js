@@ -7,6 +7,11 @@ function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    async function backHandler(e)
+    {
+        e.preventDefault();
+        window.location.href = "/";
+    }
 
     async function submitHandler (e) {
         e.preventDefault(); 
@@ -36,49 +41,48 @@ return  (
 
 
 
-<div className='MainDiv'>
+<div className='flex items-center h-screen w-full MainDiv '>
+       <button  className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded BackButton " onClick={backHandler}> Back</button>
 
-    <div className ="rect">
-  
-
-    <form onSubmit={submitHandler}>
-    <h1 className='StudentLoginHeader'>Student Login</h1>
-
-        <label className="UsernameText">Username</label>
-        <br/>
-        <input
-        type = "text"
-        className='form-control'
-        placeholder="Enter Username" 
-        value={email}
-        onChange ={(e) => setEmail(e.target.value)}
-        ></input>
-<br/>
-        <label className='PasswordText'>Password</label>
-        <br/>
-        <input type = "password"
-        className='form-control'
-        placeholder="Enter Password"
-        value={password}
-        onChange ={(e) => setPassword(e.target.value)}
-        ></input>
-<br/>
-
-        <div className='col-md-12 text-center'>
-       
-        <button className ="btn btn-dark button" type="submit">Sumbit</button>
-      
+            <div className='w-full rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto rect'>
+                <span className="block w-full text-xl uppercase font-bold mb-4">Student Login</span>
+                <form className="mb-4" action="/" method="post">
+                    <div className="mb-4 md:w-full">
+                        <label for="email" className="block text-l mb-1">Username</label>
+                        <input 
+                            className="w-full border rounded p-2 outline-none focus:shadow-outline" 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="Enter Username"
+                            value={email}
+                            onChange ={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div class="mb-4 md:w-full">
+                        <label for="password" className="block text-l mb-1">Password</label>
+                        <input 
+                            className="w-full border rounded p-2 outline-none focus:shadow-outline" 
+                            type="password" 
+                            name="password" 
+                            id="password" 
+                            placeholder="Enter Password"
+                            value={password}
+                            onChange ={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className='col-md-12 text-center'>
+                        <button 
+                            className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " 
+                            type="submit"
+                            onClick = {submitHandler}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        
-
-
-
-
-    
-    </form>
-    </div>
- 
-</div>
 
 );
 }

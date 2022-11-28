@@ -1,43 +1,31 @@
 .StudentLoginHeader{
     text-align: center;
-    
  }
  .TopDiv{
-     /* display: flex;
-     align-items: center;
-     justify-content: center;
-     margin-top: auto; */
-     display: flex;
      justify-content: center;
      align-items: center;
-     background-color: rgb(147, 162, 162);
-     padding-bottom: 361px;
-     
-  
- 
+     background-color: rgb(70, 114, 80);
  }
  
- .BottomDiv{
-   
-     background-color: rgb(125, 158, 158);
- 
-      display: flex;
+ .Bottomdiv{
+     background-color:  rgb(135, 150, 120) !important;
      align-items: center;
      justify-content: center;
      vertical-align: middle; 
-     margin-top: 300px;
-       height: 300px;
-     width: 500px;
-     border-radius: 15px 50px 30px 5px
- 
-    
- 
  }
  
- .button{
- text-align: center;
+ .ButtonAdmin{
+     text-align: center;
  }
  
- 
- 
- 
+ .StudentLoginHeader{
+     position: relative;
+     bottom: 231px;
+     left: 339px;
+ }
+
+ #togglePassword{
+    position:realtive;
+    top:0px; 
+     left:0px
+ }
