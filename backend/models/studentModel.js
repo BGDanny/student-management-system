@@ -45,7 +45,7 @@ const studentSchema = new mongoose.Schema({
             default: " "
         }
     }],
-    fees: {
+    fees: [{
             tution_Fee: {
                 type: String,
                 default: " "
@@ -54,7 +54,7 @@ const studentSchema = new mongoose.Schema({
                 type: Date,
                 default: new Date()
         } 
-    },
+    }],
     Grades: [{
         letter_grade: {
             type: String,

@@ -5,5 +5,6 @@ import { EditAccount } from "./EditAccount";
 import { Finance } from "./Finance";
 import { EnrollCourses } from "./EnrollCourses";
 import GpaCalculator from '../MainPage/GpaCalculator';
+import { StudentInformation } from "./StudentInformation";
 
-export { AllCourses, Dashboard, Discussions, EditAccount, Finance, GpaCalculator, EnrollCourses};
+export { AllCourses, Dashboard, Discussions, EditAccount, Finance, GpaCalculator, EnrollCourses, StudentInformation};

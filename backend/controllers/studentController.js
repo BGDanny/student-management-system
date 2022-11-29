@@ -157,6 +157,27 @@ const updateFees = asynHandler(async (req, res) => {
     })
 }) 
 
+const addFees = asynHandler (async (req, res) => {
+    let id = req.params.id;
+    const {fees} = req.body;
+    let nwFees = {
+        tution_Fee: fees,
+        date_of_Receipt: new Date()
+    }
+    Student.findOneAndUpdate({_id: req.params.id}, {$push: {fees: nwFees}}).exec(async function(err)
+    {
+        if(err)
+        {
+            res.json(err);
+        }
+        else 
+        {
+            res.json("Receipt added Successfully");
+        }
+
+    })
+})
+
 const getGrades = asynHandler(async (req, res) => {
     console.log(req.params.id);
     Student.findById(req.params.id).populate({ path: 'Grades', 
@@ -418,4 +439,4 @@ const addGrades = asynHandler(async (req, res) => {
 
 
 
-module.exports = { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword};
+module.exports = { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword, addFees};

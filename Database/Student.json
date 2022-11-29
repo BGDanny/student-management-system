@@ -18,10 +18,10 @@ db.student.insertMany([{
     end_Date: "2021-12-31"
   }],
   fees:
-    {
+    [{
       tution_Fee: "$2500",
       date_of_Receipt: new Date("2022-05-22")
-    },
+    }],
   Grades: [
     {
     letter_grade: "A+",
@@ -57,10 +57,10 @@ db.student.insertMany([{
     end_Date: "2021-12-31"
     }],
   fees:
-    {
+    [{
       tution_Fee: "$2100",
       date_of_Receipt: new Date("2022-06-22")
-    },
+    }],
   Grades: [
   {
     letter_grade: "A-",

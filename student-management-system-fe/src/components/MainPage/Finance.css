@@ -30,6 +30,14 @@
 
 .display-payment {
     background-color: #D4EFDF;
+    margin: auto;
     margin-top: 10%;
     border-radius: 25px;
+    width: 40%;
+}
+
+.payment-header {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 10px;
 }

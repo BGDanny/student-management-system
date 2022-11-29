@@ -8,6 +8,7 @@ import {
     MdSettings,
 } from "react-icons/md";
 import {BsCalculatorFill} from "react-icons/bs";
+import {GrCircleInformation} from "react-icons/gr"
 import { usePageContext } from "../context/PageContext";
 
 export const Nav = () => {
@@ -45,6 +46,9 @@ export const Nav = () => {
             </Button>
             <Button leftIcon={<MdSettings />} onClick={handleClick(6)}>
                 Edit Account
+            </Button>
+            <Button leftIcon={<GrCircleInformation />} onClick={handleClick(7)}>
+                User Information
             </Button>
         </Flex>
     );

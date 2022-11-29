@@ -1,5 +1,5 @@
 const express = require('express');
-const { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword} = require('../controllers/studentController');
+const { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword, addFees} = require('../controllers/studentController');
 
 const router = express.Router();
 
@@ -21,6 +21,7 @@ router.route('/replyPosts/:id').put(replyPost);
 router.route('/edit/:id').patch(editStudent);
 router.route('/editPassword/:id').patch(editStudentPassword);
 router.route('/').get(allStudentData);
+router.route('/addReceipt/:id').put(addFees);
 
 
 module.exports = router;

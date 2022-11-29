@@ -6,7 +6,8 @@ import {
     Discussions,
     EditAccount,
     Finance,
-    EnrollCourses
+    EnrollCourses,
+    StudentInformation
 } from "./MainPage";
 
 import GpaCalculator from "./MainPage/GpaCalculator";
@@ -30,6 +31,8 @@ export const Main = () => {
                 return <GpaCalculator />
             case 6:
                 return <EditAccount />;
+            case 7:
+                return <StudentInformation />
             default:
                 return <Dashboard />;
         }

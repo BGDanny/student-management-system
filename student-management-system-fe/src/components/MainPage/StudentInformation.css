@@ -1,0 +1,24 @@
+.user-info {
+    width: 80%;
+    height: 600px;
+    background-color: #AEB6BF;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.info {
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.header {
+text-align: center;
+font-weight: bold;
+font-size: 2rem;
+}
+
+.info-text {
+    font-size: 1.4rem;
+}

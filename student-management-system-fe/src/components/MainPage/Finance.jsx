@@ -18,10 +18,9 @@ import {
 } from "@chakra-ui/react";
 export const Finance = () => {
 
-    const [fetchedData, setFetchedData] = useState([]);
+    const [fetchedData, setFetchedData] = useState([{}]);
     const [fetchedStudentLoanData, setFetchedStudentLoanData] = useState([]);
-    const [tutionFee, setTutionFee] = useState(0);
-    const [receiptDate, setReceiptDate] = useState(null);
+    const [tutionFee, setTutionFee] = useState([{}]);
     const [length, setLength] = useState(0);
     useEffect(() => {
         fetchProducts();
@@ -48,8 +47,8 @@ export const Finance = () => {
         const url = "http://localhost:5000/api/students/" + id;
         axios.get(url).then((res) => {
             setFetchedStudentLoanData(res.data.student.loan);
-            setTutionFee(res.data.student.fees.tution_Fee);
-            setReceiptDate(res.data.student.fees.date_of_Receipt);
+            setTutionFee(res.data.student.fees);
+            setTutionFee(res.data.student.fees);
         })
         .catch((err) => {
             console.log(err);
@@ -107,24 +106,22 @@ export const Finance = () => {
             </TableContainer>
          </div>
          <div className="display-payment">
-         <h2 className="account-header">Past Payment History</h2>
+         <h2 className="payment-header">Past Payment History</h2>
             <TableContainer>
-                <Table variant="simple">
+                <Table variant="striped" size="sm">
                     <Thead>
                         <Tr>
-                            <Th>Year</Th>
-                            <Th>Term</Th>
+                            {/* <Th>Year</Th> */}
                             <Th>Payment</Th>
                             <Th>Date</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
+                        {tutionFee.map((fee) => (
                         <Tr>
-                            <Td>2021</Td>
-                            <Td>ALberta Student Loan</Td>
-                            <Td>{tutionFee}</Td>
-                            <Td>{receiptDate}</Td>
-                        </Tr>
+                            <Td>{fee.tution_Fee}</Td>
+                            <Td>{fee.date_of_Receipt}</Td>
+                        </Tr>))}
                     </Tbody>
                 </Table>
             </TableContainer>
