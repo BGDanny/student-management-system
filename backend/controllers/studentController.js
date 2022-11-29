@@ -320,21 +320,91 @@ const createPost = asynHandler(async (req, res) => {
 
 const editStudent = asynHandler(async (req, res) => {
     console.log(req.params.id);
-    const { email, phone_Number, address } = req.body;
-    Student.findOneAndUpdate({ _id: req.params.id }, { $set: { 'email': email, 'phone_Number': phone_Number, 'address': address } }).exec(async function (err) {
+    const {phoneNumber, address} = req.body;
+    if(phoneNumber.length == 0)
+    {   
+        Student.findOneAndUpdate({ _id: req.params.id }, { $set: {'address': address } }).exec(async function (err) {
+            if (err) {
+                res.json(err);
+            }
+            else {
+    
+                res.json("Edit Address Successfully");
+    
+            }
+        })
+    }
+
+    if(address.length == 0)
+    {
+        if(phoneNumber.match("[0-9]+") && phoneNumber.length == 10)
+        {
+        Student.findOneAndUpdate({ _id: req.params.id}, { $set: {'phone_Number': phoneNumber} }).exec(async function (err) {
+            if (err) {
+                res.json(err);
+            }
+            else {
+    
+                res.json("Edit Phone Number Successfully");
+    
+            }
+        })
+        }
+        else 
+        {
+            res.json("Inavlid Phone Number");
+        }
+
+    }
+
+    if(address.length != 0 && phoneNumber.length != 0)
+    {
+        if(phoneNumber.match("[0-9]+") && phoneNumber.length == 10)
+        {
+            Student.findOneAndUpdate({ _id: req.params.id }, { $set: { 'phone_Number': phoneNumber, 'address': address } }).exec(async function (err) {
         if (err) {
             res.json(err);
         }
         else {
 
-            res.json("Edit Made Successfully");
+            res.json("Edit Address and Phone Number Successfully");
 
         }
-    })
+    })}
+    else 
+    {
+        res.json("Inavlid Phone Number");
+    }
+}
 })
 
+
+const editStudentPassword = asynHandler(async (req, res) => {
+    const {password} = req.body;
+    if(password.length >= 7)
+    {
+    Student.findOneAndUpdate({ _id: req.params.id}, { $set: {'password': password} }).exec(async function (err) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json("Password Changed Successfully");
+        }
+    })
+    }
+    else if(password.length < 7)
+    {
+        res.json("Password must be at least 7 character's long");
+    }
+    else if(password.length == 0)
+    {
+        res.json("Empty Password, Please enter the password again");
+    }
+        
+});
+
 const addGrades = asynHandler(async (req, res) => {
-    Student.findOneAndUpdate({ _id: req.params.id }, { $push: { Grades: { 'letter_grade': req.body.letter_grade, course_id: req.body.course_id } } }).exec(async function (err) {
+    Student.findOneAndUpdate({ _id: req.params.id }, { $push: {Grades: { 'letter_grade': req.body.letter_grade, course_id: req.body.course_id } } }).exec(async function (err) {
         if (err) {
             res.json(err);
         }
@@ -348,4 +418,4 @@ const addGrades = asynHandler(async (req, res) => {
 
 
 
-module.exports = { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades};
+module.exports = { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword};
