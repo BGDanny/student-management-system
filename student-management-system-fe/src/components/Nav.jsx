@@ -30,7 +30,7 @@ export const Nav = () => {
                 Dashboard
             </Button>
             <Button leftIcon={<MdMenuBook />} onClick={handleClick(1)}>
-                All Courses
+                View Grades
             </Button>
             <Button leftIcon={<MdMenuBook />} onClick={handleClick(2)}>
                 Enroll Courses

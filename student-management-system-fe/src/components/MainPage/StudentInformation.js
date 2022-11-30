@@ -28,16 +28,16 @@ export const StudentInformation = () => {
             <h1 className="header">Student Information</h1>
             </div>
             <div className="info">
-            <p className="info-text"><b>Name:</b>{studentInfo.name}</p>
+            <p className="info-text"><b>Name:</b>  {studentInfo.name}</p>
             <br />
             <br />
-            <p className="info-text"><b>Address:</b> {studentInfo.address}</p>
+            <p className="info-text"><b>Address:</b>  {studentInfo.address}</p>
             <br />
             <br />
-            <p className="info-text"><b>Phone-Number:</b> {studentInfo.phone_Number}</p>
+            <p className="info-text"><b>Phone-Number:</b>  {studentInfo.phone_Number}</p>
             <br />
             <br />
-            <p className="info-text"><b>Email:</b> {studentInfo.email}</p>
+            <p className="info-text"><b>Email:</b>  {studentInfo.email}</p>
             </div>
             </div>
         </div>

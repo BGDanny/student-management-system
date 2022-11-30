@@ -70,17 +70,17 @@ function calculateGpa()
 return(
 <div>
     <div className="gpa-form">
-        <h1 className='header-Text'>GPA Calculator</h1>
+        <h1 className='header'>GPA Calculator</h1>
         <form className='form' onSubmit={handleSubmit}>
         <div className='course0'>
             <div>
-               <b><h2 className='header'>Courses</h2></b> 
+               <b><h2 className='header-Text'>Courses</h2></b> 
             </div>
             <div>
-                <b><h2 className='header'>Credits</h2></b>
+                <b><h2 className='header-Text'>Credits</h2></b>
             </div>
             <div>
-               <b><h2 className='header'>Grade</h2></b> 
+               <b><h2 className='header-Text'>Grade</h2></b> 
             </div>
         </div>
         <div className='course1'>

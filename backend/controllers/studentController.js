@@ -142,9 +142,9 @@ const getCourses = asynHandler(async (req, res) => {
 
 const updateFees = asynHandler(async (req, res) => {
     let id = req.params.id;
-    const { fees } = req.body;
+    const { upfees } = req.body;
 
-    Student.findOneAndUpdate({_id: id}, {$set:{'fees.tution_Fee': fees, 'fees.date_of_Receipt': new Date()}}).exec(function(err)
+    Student.findOneAndUpdate({_id: id}, {$set:{currentFee: upfees}}).exec(function(err)
     {
         if(err)
         {
@@ -232,51 +232,116 @@ const searchCourse = asynHandler(async (req, res) => {
 
 
 const addCourse = asynHandler( async (req, res) => {
-    Student.findOneAndUpdate({_id: req.params.id}, {$push: {sections: req.body.section}}).exec(async function(err)
-    {
-        if(err)
+    const {section} = req.body;
+    let arraySection = [];
+    let notUni = false;
+    Student.findById(req.params.id).exec(async function (err, sections)
         {
-            res.json(err);
-        }
-        else 
-        {
-            Section.findOneAndUpdate({_id: req.body.section}, {$push: {students_id: req.params.id}}).exec(async function(err)
+            if(err)
             {
-                if(err)
+                console.log(err);
+            }
+            else
+            {
+                arraySection = sections.sections;
+                for(let i=0; i<arraySection.length; i++)
                 {
-                    res.json(err);
+                    if(arraySection[i] == section)
+                    {
+                        notUni = true;
+                        break;
+                    }
                 }
-                else 
+
+                if(!notUni)
                 {
-                    res.json("added Successfully");
+                    Student.findOneAndUpdate({_id: req.params.id}, {$push: {sections: section}}).exec(async function(err)
+                    {
+                        if(err)
+                        {
+                            console.log(err);
+                        }
+                        else 
+                        {
+                            Section.findOneAndUpdate({_id: req.body.section}, {$push: {students_id: req.params.id}}).exec(async function(err)
+                            {
+                                if(err)
+                                {
+                                    res.json(err);
+                                }
+                                else 
+                                {
+                                    res.json(true);
+                                }
+                            })
+                        }
+                    })
+
                 }
-            })
-        }
+                else
+                {   
+                        console.log("this sent");
+                        res.json(false);
+                }
+            }
     })
-})
+});
 
 const removeCourse = asynHandler(async (req, res) => {
-    Student.findOneAndUpdate({_id: req.params.id}, {$pull: {sections: req.body.section}}).exec(async function(err)
-    {
-        if(err)
+    const {section} = req.body;
+    let arraySection = [];
+    let exist = true;
+    Student.findById(req.params.id).exec(async function (err, sections)
         {
-            res.json(err);
-        }
-        else 
-        {
-            Section.findOneAndUpdate({_id: req.body.section}, {$pull: {students_id: req.params.id}}).exec(async function(err)
+            if(err)
             {
-                if(err)
+                console.log(err);
+            }
+            else
+            {
+                arraySection = sections.sections;
+                for(let i=0; i<arraySection.length; i++)
                 {
-                    res.json(err);
+                    if(arraySection[i] == section)
+                    {
+                        exist = true;
+                        break;
+                    }
+                    else 
+                    {
+                        exist = false;
+                    }
                 }
-                else 
-                {
-                    res.json("removed Successfully");
+                    if(exist)
+                    {
+                    Student.findOneAndUpdate({_id: req.params.id}, {$pull: {sections: req.body.section}}).exec(async function(err)
+                    {
+                        if(err)
+                        {
+                            console.log(err);
+                        }
+                        else 
+                        {
+                            Section.findOneAndUpdate({_id: req.body.section}, {$pull: {students_id: req.params.id}}).exec(async function(err)
+                            {
+                                if(err)
+                                {
+                                    console.log(err);
+                                }
+                                else 
+                                {
+                                    res.json(true);
+                                }
+                            })
+                        }
+                    })
+                    }
+                    else 
+                    {
+                        res.json(false);
+                    }
                 }
-            })
-        }
-    })
+})
 })
 
 

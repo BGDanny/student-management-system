@@ -76,6 +76,59 @@ export const EnrollCourses = () => {
         })
     };
 
+
+    async function handleEnroll(e) {
+        e.preventDefault();
+        let section = courseId;
+        let id = localStorage.getItem('id');
+        const url = 'http://localhost:5000/api/students/sections/' + id;
+        const response = await fetch(url,  {
+            method: 'PUT',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+               section
+            }),
+        })
+
+        const data = await response.json();
+        if(data)
+        {
+            alert("Course is enrolled successfully");
+        }
+        else 
+        {
+            alert("Course is already Enrolled");
+        }
+    }
+
+    async function handleRemove(e)
+    {
+        e.preventDefault();
+        let section = courseId;
+        let id = localStorage.getItem('id');
+        const url = 'http://localhost:5000/api/students/sections/' + id;
+        const response = await fetch(url,  {
+            method: 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+               section
+            }),
+        })
+        const data = await response.json();
+          if(data)
+          {
+            alert("Course is removed successfully");
+          }
+          else 
+          {
+            alert("Course doesnot Exists");
+          }
+    }
+
     return <>
     <div>
     <div className="search-container">
@@ -122,6 +175,15 @@ export const EnrollCourses = () => {
             <p>End Time: {courseEnd}</p>
             </div>
          </div>
+        </div>}
+        {courseName.length > 0 && show && 
+        <div className="en-buttons">
+        <div> 
+        <Button colorScheme='blue' onClick={handleEnroll}>Enroll</Button>
+        </div>
+        <div> 
+        <Button colorScheme='blue' onClick={handleRemove}>Remove Course</Button>
+        </div>
         </div>}
          </div>
          <div>

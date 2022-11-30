@@ -38,3 +38,10 @@
     font-weight: bold;
     text-align: center;
 }
+
+.en-buttons {
+    display: flex;
+    margin-top: 10%;
+    margin-left:30%;
+    gap: 50px;
+}

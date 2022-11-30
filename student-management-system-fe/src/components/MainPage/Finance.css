@@ -41,3 +41,36 @@
     font-weight: bold;
     padding-bottom: 10px;
 }
+
+
+.pay-button {
+    margin-top: 5%;
+text-align: center;
+}
+
+.form-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.form-card-container {
+    width: 80%;
+    height: 500px;
+    background-color: #EDBB99 ;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.pay-header {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.expiry-cvv {
+    display: flex;
+    flex-direction: row;
+    gap : 30px;
+}

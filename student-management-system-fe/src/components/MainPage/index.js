@@ -1,4 +1,4 @@
-import { AllCourses } from "./AllCourses";
+import { ViewGrades } from "./ViewGrades";
 import { Dashboard } from "./Dashboard";
 import { Discussions } from "./Discussions";
 import { EditAccount } from "./EditAccount";
@@ -7,4 +7,4 @@ import { EnrollCourses } from "./EnrollCourses";
 import GpaCalculator from '../MainPage/GpaCalculator';
 import { StudentInformation } from "./StudentInformation";
 
-export { AllCourses, Dashboard, Discussions, EditAccount, Finance, GpaCalculator, EnrollCourses, StudentInformation};
+export { ViewGrades, Dashboard, Discussions, EditAccount, Finance, GpaCalculator, EnrollCourses, StudentInformation};

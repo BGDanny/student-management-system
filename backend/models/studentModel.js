@@ -29,8 +29,13 @@ const studentSchema = new mongoose.Schema({
     sections: [{
         type: Object,
         ref:'Section',
-        default: []
+        default: [],
+        unique: true
     }],
+    currentFee: {
+        type: Number,
+        default: 0
+    },
     loan: [{
         year: {
         type: Number,

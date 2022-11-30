@@ -19,6 +19,7 @@ import axios from "axios";
 
 export const Dashboard = () => {
     const [fetchedData, setFetchedData] = useState([]);
+    let length;
 
     useEffect(() => {
         fetchProducts();
@@ -31,6 +32,19 @@ export const Dashboard = () => {
         axios.get(url).then((res) => {
             console.log(res.data);
             setFetchedData(res.data);
+            length = res.data.length;
+            console.log(length);
+            let upfees = length*670.52;
+            const url2 = "http://localhost:5000/api/students/fees/" + id;
+            const response = fetch(url2, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type' : 'application/json',
+                    },
+                    body: JSON.stringify({
+                        upfees
+                    }),
+        })
         })
         .catch((err) => {
             console.log(err);
@@ -40,10 +54,6 @@ export const Dashboard = () => {
   console.log("data: ", fetchedData);
     return (
         <>
-            <InputGroup>
-                <InputLeftElement children={<MdSearch />} />
-                <Input type="text" placeholder="Search" variant="filled" />
-            </InputGroup>
             <Heading size="1xl">Dashboard</Heading>
             <Text>Ongoing courses</Text>
             <TableContainer>
