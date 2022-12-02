@@ -13,7 +13,7 @@ router.route('/fees/:id').get(getFees);
 router.route('/courses/:id').get(getCourses);
 router.route('/fees/:id').put(updateFees);
 router.route('/grades/:id').get(getGrades);
-router.route('/grades/:id').put(addGrades);
+router.route('/grades/:email').put(addGrades);
 router.route('/searchCourses/:name').get(searchCourse);
 router.route('/sections/:id').put(addCourse);
 router.route('/sections/:id').delete(removeCourse);
@@ -22,6 +22,7 @@ router.route('/edit/:id').patch(editStudent);
 router.route('/editPassword/:id').patch(editStudentPassword);
 router.route('/').get(allStudentData);
 router.route('/addReceipt/:id').put(addFees);
+
 
 
 module.exports = router;

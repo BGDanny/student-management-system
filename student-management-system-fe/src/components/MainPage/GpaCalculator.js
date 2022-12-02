@@ -64,6 +64,7 @@ function calculateGpa()
     let credits = parseInt(credits1) + parseInt(credits2) + parseInt(credits3) + parseInt(credits4) + parseInt(credits5) + parseInt(credits6);
     let gpa = credits1*grade1 + credits2*grade2 + credits3*grade3 + credits4*grade4 + credits5*grade5 + credits6*grade6;
     gpa = gpa/credits;
+    gpa = gpa.toFixed(2);
     return gpa;
 }
 
@@ -96,7 +97,6 @@ return(
             <option value="4.0">A+</option>
             <option value="4.0">A</option>
             <option value="3.70">A-</option>
-            <option value="3.30">B+</option>
             <option value="3.70">A-</option>
             <option value="3.30">B+</option>
             <option value="3.00">B</option>

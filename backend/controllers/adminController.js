@@ -1,6 +1,7 @@
 const asynHandler  = require("express-async-handler");
 const Admin = require("../models/adminModel");
 const Section = require("../models/sectionModel");
+const Student = require("../models/studentModel");
 
 const loginAdmin = asynHandler(async (req, res) => {
 
@@ -9,11 +10,12 @@ const loginAdmin = asynHandler(async (req, res) => {
     if(userExits)
     {
             let userPassword = userExits.password;
-            
+            let userId = userExits.id;
             if(password == userPassword)
             {
             res.json({
-            found: true
+            found: true,
+            id: userId
             })
             }
             else
@@ -36,8 +38,13 @@ const loginAdmin = asynHandler(async (req, res) => {
 });
 
 const addSection = asynHandler(async (req, res) => {
-    const{id, year,semester, instructor, day, location, courseId, startTime, endTime} = req.body;
+    const{year,semester, instructor, day, location, courseId, startTime, endTime} = req.body;
 
+    let id = Math.floor(Math.random()*10000);
+    console.log(startTime);
+    console.log(endTime);
+    if(parseInt(startTime) < parseInt(endTime))
+    {
     try{
         const section = new Section ({
             _id: id,
@@ -52,11 +59,12 @@ const addSection = asynHandler(async (req, res) => {
             end_time: endTime
         })
         console.log(section);
+        console.log("-------------------------");
     section.save(function(err)
     {
         if(err)
         {
-            res.json({status: "error", error:'Duplicate section'});
+            res.json({status: "error2", error:'Duplicate section'});
         }
         else {
             res.json("created");
@@ -64,9 +72,59 @@ const addSection = asynHandler(async (req, res) => {
     });
     }catch(err)
     {
-        res.json({status: "error", error:'Duplicate section'});
+        res.json({status: "error1", error:'Duplicate section'});
+    }
+    }
+    else 
+    {
+        res.json("Start time is greater than end time");
     }
 })
 
+const individualAdminData = asynHandler(async (req, res) => {
 
-module.exports = {loginAdmin, addSection};
+    Admin.findById(parseInt(req.params.id))
+    .then(result => {
+     res.status(200).json({
+        admin:result
+     })
+    })
+    .catch(err => {
+     console.log(err);
+     res.status(500).json({
+         error:err
+     })
+    })
+ });
+
+
+ const removeSection = asynHandler(async (req, res) => {
+
+    Section.deleteOne({ course_id: req.params.course_id}, function (err) {
+        if(err) 
+        {res.json(err)}
+        else 
+        {
+        res.json("Successful deletion");
+        }
+      });
+
+ });
+
+
+ const removeStudent = asynHandler(async (req, res) => {
+
+    console.log("This is called ");
+    Student.deleteOne({ email: req.params.email}, function (err) {
+        if(err) 
+        {res.json(err)}
+        else 
+        {
+        res.json("Successful deletion");
+        }
+      });
+
+ });
+
+
+module.exports = {loginAdmin, addSection,individualAdminData, removeSection,removeStudent};

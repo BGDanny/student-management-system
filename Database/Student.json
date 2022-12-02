@@ -1,4 +1,5 @@
 db.student.insertMany([{
+  _id: 11222,
   name: "Mark",
   email: "Mark@gmail.com",
   phone_Number: "4034441222",
@@ -34,6 +35,7 @@ db.student.insertMany([{
     }]
 },
 {
+  _id: 11223,
   name: "Samuel",
   email: "Samuel@gmail.com",
   phone_Number: "4034441277",

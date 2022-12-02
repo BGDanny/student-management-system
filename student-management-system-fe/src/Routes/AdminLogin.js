@@ -28,10 +28,11 @@ function AdminLogin(){
         });
 
         const data = await response.json();
+        localStorage.setItem('id', data.id);
 
         if (data.found) {
             alert("Login Successfull");
-            window.location.href = "/adminMainPage";
+            window.location.href = "/adminPage";
         } else {
             alert("Wrong Email and Password");
         }

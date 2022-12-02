@@ -11,7 +11,7 @@ const sectionSchema = new mongoose.Schema({
     },
     semester: {
         type: String,
-        required: true
+        required: true,
     },
     instructor: {
         type: String,
@@ -33,7 +33,9 @@ const sectionSchema = new mongoose.Schema({
     course_id: {
         type: Number,
         ref: 'Course',
-        required: true
+        required: true,
+        unique: true,
+        dropDups:true
     },
     start_time: {
         type: Number,

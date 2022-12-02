@@ -27,6 +27,7 @@ export const Dashboard = () => {
 
     let id = localStorage.getItem('id');
 
+
     const fetchProducts = async () => {
         const url = "http://localhost:5000/api/students/sections/" + id;
         axios.get(url).then((res) => {

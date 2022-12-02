@@ -20,6 +20,7 @@ import axios from "axios";
 export const ViewGrades = () => {
 
     const [fetchedData, setFetchedData] = useState([]);
+    const [show, setShow] = useState(false);
     let length;
 
     useEffect(() => {
@@ -32,6 +33,11 @@ export const ViewGrades = () => {
         const url = "http://localhost:5000/api/students/grades/" + id;
         axios.get(url).then((res) => {
             setFetchedData(res.data);
+            console.log("The data is " + res.data.length);
+            if(res.data[0].letter_grade != null)
+            {
+                setShow(true);
+            }
             console.log(res.data);
         })
         .catch((err) => {
@@ -52,7 +58,7 @@ export const ViewGrades = () => {
                             <Th>Grade</Th>
                         </Tr>
                     </Thead>
-                    {fetchedData.map((grade) => (<Tbody>
+                    {show && fetchedData.map((grade) => (<Tbody>
                         <Tr>
                             <Td>{grade.course_id.course_Name}</Td>
                             <Td>{grade.course_id.course_Description}</Td>

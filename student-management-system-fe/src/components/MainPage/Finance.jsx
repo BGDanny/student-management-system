@@ -56,20 +56,20 @@ export const Finance = () => {
             console.log(err);
         })
     };
+    
 
     function payButtonHandler(e) {
         e.preventDefault();
         setPayShow(true);
-
     }
 
-    function payHandler(e) {
+    async function payHandler(e) {
         e.preventDefault();
         alert("paid");
         const url = "http://localhost:5000/api/students/addReceipt/" + id;
         let fees = amountPaid;
         console.log("the amount paid is" + fees);
-        const response = fetch(url, {
+        const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type' : 'application/json',
@@ -82,7 +82,7 @@ export const Finance = () => {
         let upfees = fee - fees;
         console.log("The up fees is "+ upfees);
         const url2 = "http://localhost:5000/api/students/fees/" + id;
-        const response2 = fetch(url2, {
+        const response2 = await fetch(url2, {
             method: 'PUT',
             headers: {
                 'Content-Type' : 'application/json',
@@ -91,10 +91,23 @@ export const Finance = () => {
                 upfees
             }),
         })
+        update();
         setPayShow(false);
     }
 
-
+    async function update()
+    {
+    const url3 =  "http://localhost:5000/api/students/" + id;
+    const response3 = await fetch(url3, {
+        method: 'GET',
+        headers: {
+            'Content-Type' : 'application/json',
+        }
+    })
+        const data = await response3.json();
+        setTutionFee(data.student.fees);
+        setFees(data.student.currentFee);
+    }
 
     return (
         <>

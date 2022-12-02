@@ -41,21 +41,30 @@ const loginStudent = asynHandler(async (req, res) => {
 
 const registerStudent = asynHandler(async (req, res) => {
     const{name, email, phoneNumber, address, password} = req.body;
-
+    console.log("point1");
+    let id = parseInt(Math.floor(Math.random()*100000));
     try{
     const student = new Student ({
+        _id: id,
         name: name,
         email: email,
         phone_Number: phoneNumber,
         address: address,
-        password: password
+        password: password,
+        department_id: "1221",
+        sections: [],
+        currentFee: 0,
+        loan: [{}],
+        fees: [{}],
+        Grades: [{}]
     });
 
+    console.log(student);
     student.save(function(err)
     {
         if(err)
         {
-            res.json({status: "error", error:'Duplicate email'});
+            res.json({status: "error2", error:'Duplicate email'});
         }
         else {
             res.json("created");
@@ -63,7 +72,7 @@ const registerStudent = asynHandler(async (req, res) => {
     });
     }catch(err)
     {
-        res.json({status: "error", error:'Duplicate email'});
+        res.json({status: "error1", error:'Duplicate email'});
     }
 
 })
@@ -74,7 +83,8 @@ const allStudentData = asynHandler(async (req, res) => {
 })
 
 const individualStudentData = asynHandler(async (req, res) => {
-   Student.findById(req.params.id)
+
+   Student.findById(parseInt(req.params.id))
    .then(result => {
     res.status(200).json({
         student:result
@@ -86,7 +96,7 @@ const individualStudentData = asynHandler(async (req, res) => {
         error:err
     })
    })
-})
+});
 
 const getEnrolledSections = asynHandler (async (req, res) => {
     Student.findById(req.params.id).populate({path:'sections', model: 'Section', populate: {
@@ -405,10 +415,15 @@ const createPost = asynHandler(async (req, res) => {
 
 
 const editStudent = asynHandler(async (req, res) => {
-    console.log(req.params.id);
+    console.log("pont1");
     const {phoneNumber, address} = req.body;
-    if(phoneNumber.length == 0)
-    {   
+    if(phoneNumber.length == 0 && address.length == 0)
+    {
+        console.log("pont2");
+        res.json("No Chanes, no values provided");
+    }
+    else if(phoneNumber.length == 0)
+    {   console.log("pont3");
         Student.findOneAndUpdate({ _id: req.params.id }, { $set: {'address': address } }).exec(async function (err) {
             if (err) {
                 res.json(err);
@@ -420,9 +435,9 @@ const editStudent = asynHandler(async (req, res) => {
             }
         })
     }
-
-    if(address.length == 0)
+    else if(address.length == 0)
     {
+        console.log("pont4");
         if(phoneNumber.match("[0-9]+") && phoneNumber.length == 10)
         {
         Student.findOneAndUpdate({ _id: req.params.id}, { $set: {'phone_Number': phoneNumber} }).exec(async function (err) {
@@ -442,9 +457,9 @@ const editStudent = asynHandler(async (req, res) => {
         }
 
     }
-
-    if(address.length != 0 && phoneNumber.length != 0)
+    else if(address.length != 0 && phoneNumber.length != 0)
     {
+        console.log("pont5");
         if(phoneNumber.match("[0-9]+") && phoneNumber.length == 10)
         {
             Student.findOneAndUpdate({ _id: req.params.id }, { $set: { 'phone_Number': phoneNumber, 'address': address } }).exec(async function (err) {
@@ -456,12 +471,16 @@ const editStudent = asynHandler(async (req, res) => {
             res.json("Edit Address and Phone Number Successfully");
 
         }
-    })}
+         })}
+         else 
+         {
+            res.json("Invalid Fields");
+         }
+    }
     else 
     {
-        res.json("Inavlid Phone Number");
+        res.json("Invalid Fields");
     }
-}
 })
 
 
@@ -490,7 +509,12 @@ const editStudentPassword = asynHandler(async (req, res) => {
 });
 
 const addGrades = asynHandler(async (req, res) => {
-    Student.findOneAndUpdate({ _id: req.params.id }, { $push: {Grades: { 'letter_grade': req.body.letter_grade, course_id: req.body.course_id } } }).exec(async function (err) {
+    console.log("addGrades called");
+    const em  = req.params.email;
+    const userExits = await Student.findOne({email: em});
+    if(userExits)
+    {
+    Student.findOneAndUpdate({ email: req.params.email }, { $push: {Grades: { 'letter_grade': req.body.letter_grade, course_id: req.body.course_id } } }).exec(async function (err) {
         if (err) {
             res.json(err);
         }
@@ -498,6 +522,11 @@ const addGrades = asynHandler(async (req, res) => {
             res.json("added grade successfully");
         }
     })
+    }
+    else 
+    {
+        res.json("User does not exits");
+    }
 })
 
 

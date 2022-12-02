@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
     
 const studentSchema = new mongoose.Schema({
+    _id: {
+        type: Number
+    },
     name: {
         type: String,
         required:true
@@ -9,7 +12,8 @@ const studentSchema = new mongoose.Schema({
     email: {
         type: String,
         required:true,
-        unique: true
+        unique: true,
+        dropDups:true
     },
     phone_Number: {
         type: String
@@ -29,8 +33,7 @@ const studentSchema = new mongoose.Schema({
     sections: [{
         type: Object,
         ref:'Section',
-        default: [],
-        unique: true
+        default: []
     }],
     currentFee: {
         type: Number,
@@ -61,6 +64,7 @@ const studentSchema = new mongoose.Schema({
         } 
     }],
     Grades: [{
+        _id:false,
         letter_grade: {
             type: String,
             default: null
@@ -68,7 +72,8 @@ const studentSchema = new mongoose.Schema({
         course_id: {
             type: Number,
             ref: 'Course',
-            unique: true
+            unique: true,
+            dropDups: true
         }
     }]
 },
