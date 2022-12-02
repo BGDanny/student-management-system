@@ -1,0 +1,92 @@
+.display-posts {
+    margin: auto;
+    max-width: 90%;
+    min-width: 400px;
+}
+
+
+.display-single-post {
+    height: 100%;
+    max-width: 90%;
+    min-width: 400px;
+    margin: auto;
+    background-color: #DFE5EB;
+    border-radius: 25px;
+
+}
+
+.display-single-post-header {
+    background-color: #BFC4C7;
+    display: block;
+    margin: auto;
+    border-radius: 25px;
+}
+
+.display-single-post-replies {
+    display: block;
+    margin: auto;
+    border-radius: 25px;
+    width: 90%;
+    min-width: 400px;
+}
+
+.display-single-post-spacer {
+    height: 20px;
+    min-width: 400px;
+}
+
+.display-single-post-replybox {
+    width: 90%;
+    min-width: 400px;
+    margin: auto;
+    display: block;
+}
+
+#replyBox {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    min-width: 400px;
+}
+
+#replyField {
+    margin-left: 0px;
+    height: 100px;
+    width: 100%;
+    border-radius: 15px;
+    resize: none;
+}
+
+#replyButton {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 70px;
+    height: 40px;
+    background-color: #BFC4C7;
+    border-radius: 25px;
+}
+
+#createButton {
+    height: 30px;
+    width: 110px;
+    background-color: #9BA4AD;
+    border-radius: 25px;
+}
+
+
+#titleField {
+    margin-left: 0px;
+    height: 40px;
+    width: 100%;
+    border-radius: 15px;
+    resize: none;
+}
+
+#descField {
+    margin-left: 0px;
+    height: 400px;
+    width: 100%;
+    border-radius: 15px;
+    resize: none;
+}

@@ -1,11 +1,12 @@
 const express = require('express');
-const { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword, addFees} = require('../controllers/studentController');
+const { loginStudent, registerStudent, singlePost, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword, addFees} = require('../controllers/studentController');
 
 const router = express.Router();
 
 router.route('/login').post(loginStudent);
 router.route('/register').post(registerStudent);
-router.route('/posts').get(allPosts);
+router.route('/posts').get(allPosts)
+router.route('/posts/:id').get(singlePost);
 router.route('/posts').post(createPost);
 router.route('/:id').get(individualStudentData);
 router.route('/sections/:id').get(getEnrolledSections);
