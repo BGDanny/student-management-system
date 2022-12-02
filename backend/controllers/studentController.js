@@ -530,7 +530,20 @@ const addGrades = asynHandler(async (req, res) => {
 })
 
 
+const singlePost = asynHandler(async (req, res) => {
+    Post.findById(req.params.id)
+        .then(result => {
+            res.status(200).json({
+                post: result
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        })
+})
 
 
-
-module.exports = { loginStudent, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword, addFees};
+module.exports = { loginStudent, singlePost, registerStudent, allStudentData, individualStudentData, getEnrolledSections, getFees, getCourses, updateFees, getGrades, searchCourse, addCourse, removeCourse, replyPost, allPosts, createPost, editStudent, addGrades, editStudentPassword, addFees};
