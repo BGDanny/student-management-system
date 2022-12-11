@@ -10,12 +10,22 @@ import {
     MenuButton,
     Button,
     MenuDivider,
+    Card,
+    CardHeader,
+    Heading,
+    CardBody,
+    Stack,
+    StackDivider,
+    TagLeftIcon,
+    Tag,
+    TagLabel,
 } from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { CgProfile } from "react-icons/cg";
 import { useAlertContext } from "../context/AlertContext";
+import { MdChatBubbleOutline, MdOutlineAttachMoney } from "react-icons/md";
 
 export const Profile = () => {
     const [fetchedData, setFetchedData] = useState([]);
@@ -68,6 +78,45 @@ export const Profile = () => {
                 </Menu>
                 <Text marginLeft={3}>{fetchedData}</Text>
             </Center>
+            <Card>
+                <CardHeader>
+                    <Heading size={"md"}>Important Dates</Heading>
+                </CardHeader>
+                <CardBody>
+                    <Stack divider={<StackDivider />} spacing="2">
+                        <Tag bg="#EEF2FD">
+                            <TagLeftIcon
+                                as={MdChatBubbleOutline}
+                                fill="#5E81F4"
+                                fontSize={"xl"}
+                            />
+                            <TagLabel>
+                                <Stack>
+                                    <Heading size={"sm"}>
+                                        Start of Semester
+                                    </Heading>
+                                    <Text>Tuesday, September 6, 2022</Text>
+                                </Stack>
+                            </TagLabel>
+                        </Tag>
+                        <Tag bg="#FFEFD6">
+                            <TagLeftIcon
+                                as={MdOutlineAttachMoney}
+                                fill="#FFAE33"
+                                fontSize={"xl"}
+                            />
+                            <TagLabel>
+                                <Stack>
+                                    <Heading size={"sm"}>
+                                        Tuition Deadline
+                                    </Heading>
+                                    <Text>Friday, September 23, 2022</Text>
+                                </Stack>
+                            </TagLabel>
+                        </Tag>
+                    </Stack>
+                </CardBody>
+            </Card>
         </Box>
     );
 };
