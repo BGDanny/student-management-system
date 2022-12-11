@@ -38,5 +38,5 @@ export const Main = () => {
                 return <Dashboard />;
         }
     };
-    return <Box marginTop={5}>{renderMainPage()}</Box>;
+    return <Box paddingTop={5} paddingX={2}>{renderMainPage()}</Box>;
 };

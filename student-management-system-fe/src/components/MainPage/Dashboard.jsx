@@ -56,7 +56,7 @@ export const Dashboard = () => {
             <Text color={"#5E81F4"} fontWeight="bold" marginY={3}>
                 Ongoing courses
             </Text>
-            <TableContainer marginX={2} borderRadius={25}>
+            <TableContainer borderRadius={25}>
                 <Table variant="simple">
                     <Thead bgColor={"#FFC670"}>
                         <Tr>
