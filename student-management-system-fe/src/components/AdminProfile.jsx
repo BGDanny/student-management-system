@@ -19,7 +19,7 @@ import { useAlertContext } from "../context/AlertContext";
 
 export const AdminProfile = () => {
     const [fetchedData, setFetchedData] = useState([]);
-    const { sendAlert } = useAlertContext()
+    const { sendAlert } = useAlertContext();
 
     useEffect(() => {
         fetchProducts();

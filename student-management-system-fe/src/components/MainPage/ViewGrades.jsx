@@ -18,7 +18,6 @@ import { MdSearch } from "react-icons/md";
 import axios from "axios";
 
 export const ViewGrades = () => {
-
     const [fetchedData, setFetchedData] = useState([]);
     const [show, setShow] = useState(false);
     let length;
@@ -27,26 +26,28 @@ export const ViewGrades = () => {
         fetchProducts();
     }, []);
 
-    let id = localStorage.getItem('id');
+    let id = localStorage.getItem("id");
 
     const fetchProducts = async () => {
         const url = "http://localhost:5000/api/students/grades/" + id;
-        axios.get(url).then((res) => {
-            setFetchedData(res.data);
-            console.log("The data is " + res.data.length);
-            if(res.data[0].letter_grade != null)
-            {
-                setShow(true);
-            }
-            console.log(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+        axios
+            .get(url)
+            .then((res) => {
+                setFetchedData(res.data);
+                console.log("The data is " + res.data.length);
+                if (res.data[0].letter_grade != null) {
+                    setShow(true);
+                }
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
-    return <>
-         <Heading size="1xl">Grades Section</Heading>
+    return (
+        <>
+            <Heading size="1xl">Grades Section</Heading>
             <Text>Grades</Text>
             <TableContainer>
                 <Table variant="simple">
@@ -58,15 +59,21 @@ export const ViewGrades = () => {
                             <Th>Grade</Th>
                         </Tr>
                     </Thead>
-                    {show && fetchedData.map((grade) => (<Tbody>
-                        <Tr>
-                            <Td>{grade.course_id.course_Name}</Td>
-                            <Td>{grade.course_id.course_Description}</Td>
-                            <Td>{grade.course_id.credits}</Td>
-                            <Td>{grade.letter_grade}</Td>
-                        </Tr>
-                    </Tbody>))}
+                    {show &&
+                        fetchedData.map((grade) => (
+                            <Tbody>
+                                <Tr>
+                                    <Td>{grade.course_id.course_Name}</Td>
+                                    <Td>
+                                        {grade.course_id.course_Description}
+                                    </Td>
+                                    <Td>{grade.course_id.credits}</Td>
+                                    <Td>{grade.letter_grade}</Td>
+                                </Tr>
+                            </Tbody>
+                        ))}
                 </Table>
             </TableContainer>
-    </>;
+        </>
+    );
 };

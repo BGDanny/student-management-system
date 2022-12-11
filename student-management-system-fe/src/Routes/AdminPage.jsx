@@ -9,7 +9,7 @@ function AdminPage() {
     const [page, setPage] = React.useState(0);
 
     return (
-        <PageContext.Provider value={{page, setPage}}>
+        <PageContext.Provider value={{ page, setPage }}>
             <Grid gridTemplateColumns="25% 50% 25%" gridTemplateRows="100vh">
                 <GridItem>
                     <AdminNav />

@@ -4,19 +4,17 @@
     min-width: 400px;
 }
 
-
 .display-single-post {
     height: 100%;
     max-width: 90%;
     min-width: 400px;
     margin: auto;
-    background-color: #DFE5EB;
+    background-color: #dfe5eb;
     border-radius: 25px;
-
 }
 
 .display-single-post-header {
-    background-color: #BFC4C7;
+    background-color: #bfc4c7;
     display: block;
     margin: auto;
     border-radius: 25px;
@@ -63,17 +61,16 @@
     bottom: 10px;
     width: 70px;
     height: 40px;
-    background-color: #BFC4C7;
+    background-color: #bfc4c7;
     border-radius: 25px;
 }
 
 #createButton {
     height: 30px;
     width: 110px;
-    background-color: #9BA4AD;
+    background-color: #9ba4ad;
     border-radius: 25px;
 }
-
 
 #titleField {
     margin-left: 0px;

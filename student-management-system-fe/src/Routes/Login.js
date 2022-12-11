@@ -7,26 +7,29 @@ function Login() {
     const [password, setPassword] = useState("");
     const { sendAlert } = useAlertContext();
 
-    async function backHandler(e)
-    {
+    async function backHandler(e) {
         e.preventDefault();
         window.location.href = "/";
     }
 
-    async function submitHandler (e) {
-        e.preventDefault(); 
-        const response = await fetch('http://localhost:5000/api/students/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json',
-            },
-            body: JSON.stringify({
-                email, password
-            }),
-        })
+    async function submitHandler(e) {
+        e.preventDefault();
+        const response = await fetch(
+            "http://localhost:5000/api/students/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+            }
+        );
 
         const data = await response.json();
-        localStorage.setItem('id', data.id);
+        localStorage.setItem("id", data.id);
         if (data.found) {
             sendAlert("Login Successfull", "success");
             window.location.href = "/studentPage";
@@ -36,41 +39,53 @@ function Login() {
         console.log(data);
     }
     return (
-<div className='flex items-center h-screen w-full MainDiv '>
-       <button  className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded BackButton " onClick={backHandler}> Back</button>
+        <div className="flex items-center h-screen w-full MainDiv ">
+            <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded BackButton "
+                onClick={backHandler}
+            >
+                {" "}
+                Back
+            </button>
 
-            <div className='w-full rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto rect'>
-                <span className="block w-full text-xl uppercase font-bold mb-4">Student Login</span>
+            <div className="w-full rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto rect">
+                <span className="block w-full text-xl uppercase font-bold mb-4">
+                    Student Login
+                </span>
                 <form className="mb-4" action="/" method="post">
                     <div className="mb-4 md:w-full">
-                        <label for="email" className="block text-l mb-1">Username</label>
-                        <input 
-                            className="w-full border rounded p-2 outline-none focus:shadow-outline" 
-                            type="email" 
-                            name="email" 
-                            id="email" 
+                        <label for="email" className="block text-l mb-1">
+                            Username
+                        </label>
+                        <input
+                            className="w-full border rounded p-2 outline-none focus:shadow-outline"
+                            type="email"
+                            name="email"
+                            id="email"
                             placeholder="Enter Username"
                             value={email}
-                            onChange ={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div class="mb-4 md:w-full">
-                        <label for="password" className="block text-l mb-1">Password</label>
-                        <input 
-                            className="w-full border rounded p-2 outline-none focus:shadow-outline" 
-                            type="password" 
-                            name="password" 
-                            id="password" 
+                        <label for="password" className="block text-l mb-1">
+                            Password
+                        </label>
+                        <input
+                            className="w-full border rounded p-2 outline-none focus:shadow-outline"
+                            type="password"
+                            name="password"
+                            id="password"
                             placeholder="Enter Password"
                             value={password}
-                            onChange ={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <div className='col-md-12 text-center'>
-                        <button 
-                            className ="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " 
+                    <div className="col-md-12 text-center">
+                        <button
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
                             type="submit"
-                            onClick = {submitHandler}
+                            onClick={submitHandler}
                         >
                             Submit
                         </button>
@@ -78,8 +93,7 @@ function Login() {
                 </form>
             </div>
         </div>
-
-);
+    );
 }
 
 export default Login;

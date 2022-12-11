@@ -1,72 +1,57 @@
-.EditPageContent{
-   
+.EditPageContent {
     min-height: 100vh;
     /* min-height: 900px; */
     /* margin-top: 3%; */
     /* background-color: rgb(77, 189, 76); */
     margin-left: 10%;
     margin-right: 10%;
-    
- 
-
 }
 
-@viewport{
-    zoom: 1.0;
+@viewport {
+    zoom: 1;
     width: extend-to-zoom;
 }
 
-.EditPageHeading{
-font-size: 3rem;
+.EditPageHeading {
+    font-size: 3rem;
 }
 
-.EditPageInsideDiv{
-/* background-color: red;
+.EditPageInsideDiv {
+    /* background-color: red;
 height: 200px; */
-
-
-
 }
 
-
-.EditPageTopButton{
+.EditPageTopButton {
     margin-bottom: 50px;
-
 }
 
-.EditPageTopDiv{
-background-color: rgba(192, 223, 223, 0.911);
+.EditPageTopDiv {
+    background-color: rgba(192, 223, 223, 0.911);
 }
 
-.EditPageForm{
+.EditPageForm {
     /* background-color: bisque; */
     min-height: 100vh;
     margin-top: 100px;
-    
 }
 
-#Address{
-text-align: center;
-width: 50%;
-padding: 12px 20px;
-
-}
-
-#PhoneNumber{
+#Address {
     text-align: center;
     width: 50%;
-    padding: 12px 20px; 
+    padding: 12px 20px;
 }
 
-#Password{
+#PhoneNumber {
     text-align: center;
     width: 50%;
-    padding: 12px 20px; 
+    padding: 12px 20px;
 }
 
-.AddressText{
-
-  
-
+#Password {
+    text-align: center;
+    width: 50%;
+    padding: 12px 20px;
 }
 
+.AddressText {
+}

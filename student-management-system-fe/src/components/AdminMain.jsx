@@ -4,9 +4,8 @@ import {
     RegisterStudents,
     AddSections,
     AddGrades,
-    ViewStudents
+    ViewStudents,
 } from "./AdminMainPage";
-
 
 export const AdminMain = () => {
     const { page } = usePageContext();
@@ -14,10 +13,10 @@ export const AdminMain = () => {
     const renderMainPage = () => {
         switch (page) {
             case 0:
-                return <ViewStudents/>;
+                return <ViewStudents />;
             case 1:
                 return <AddSections />;
-            case 2: 
+            case 2:
                 return <RegisterStudents />;
             case 3:
                 return <AddGrades />;

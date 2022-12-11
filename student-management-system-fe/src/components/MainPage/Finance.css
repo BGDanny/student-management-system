@@ -3,10 +3,9 @@
     width: 60%;
     margin: auto;
     margin-top: 10%;
-    background-color: #D6EAF8;
-    border-radius:25px;
+    background-color: #d6eaf8;
+    border-radius: 25px;
 }
-
 
 .tution-Balance {
     font-size: 1.5rem;
@@ -22,14 +21,13 @@
 }
 
 .display-loan {
-    background-color: #F5CBA7;
+    background-color: #f5cba7;
     margin-top: 10%;
     border-radius: 25px;
 }
 
-
 .display-payment {
-    background-color: #D4EFDF;
+    background-color: #d4efdf;
     margin: auto;
     margin-top: 10%;
     border-radius: 25px;
@@ -42,10 +40,9 @@
     padding-bottom: 10px;
 }
 
-
 .pay-button {
     margin-top: 5%;
-text-align: center;
+    text-align: center;
 }
 
 .form-card {
@@ -59,7 +56,7 @@ text-align: center;
 .form-card-container {
     width: 80%;
     height: 500px;
-    background-color: #EDBB99 ;
+    background-color: #edbb99;
     margin: auto;
     margin-top: 10%;
 }
@@ -72,5 +69,5 @@ text-align: center;
 .expiry-cvv {
     display: flex;
     flex-direction: row;
-    gap : 30px;
+    gap: 30px;
 }

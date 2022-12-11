@@ -1,11 +1,10 @@
 .gpa-form {
-    Height: 500px;
-    WIdth : 500px;
-    background-color: #CACFD2 ;
+    height: 500px;
+    width: 500px;
+    background-color: #cacfd2;
     margin: auto;
     margin-top: 10%;
 }
-
 
 .form {
     display: flex;
@@ -40,8 +39,8 @@
     margin-top: 5%;
 }
 
-.header{
-   font-style : italic;
+.header {
+    font-style: italic;
 }
 
 .header-Text {

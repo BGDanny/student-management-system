@@ -1,7 +1,7 @@
 .user-info {
     width: 80%;
     height: 600px;
-    background-color: #AEB6BF;
+    background-color: #aeb6bf;
     margin: auto;
     margin-top: 10%;
 }
@@ -14,9 +14,9 @@
 }
 
 .header {
-text-align: center;
-font-weight: bold;
-font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
 }
 
 .info-text {

@@ -6,7 +6,7 @@ export const AddGrades = () => {
     const [letter_grade, setLetterGrade] = useState("");
     const [course_id, setCourseId] = useState(0);
     const [email, setEmail] = useState("");
-    const { sendAlert } = useAlertContext()
+    const { sendAlert } = useAlertContext();
 
     async function submitHandler(e) {
         e.preventDefault();

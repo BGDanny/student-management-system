@@ -7,7 +7,7 @@ import {
     Finance,
     EnrollCourses,
     StudentInformation,
-    ViewGrades
+    ViewGrades,
 } from "./MainPage";
 
 import GpaCalculator from "./MainPage/GpaCalculator";
@@ -21,18 +21,18 @@ export const Main = () => {
                 return <Dashboard />;
             case 1:
                 return <ViewGrades />;
-            case 2: 
-                return <EnrollCourses />
+            case 2:
+                return <EnrollCourses />;
             case 3:
                 return <Finance />;
             case 4:
                 return <Discussions />;
-            case 5: 
-                return <GpaCalculator />
+            case 5:
+                return <GpaCalculator />;
             case 6:
                 return <EditAccount />;
             case 7:
-                return <StudentInformation />
+                return <StudentInformation />;
             default:
                 return <Dashboard />;
         }

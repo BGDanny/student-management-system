@@ -1,55 +1,44 @@
-.HomePageContent{
-   
+.HomePageContent {
     min-height: 100vh;
     /* min-height: 900px; */
     /* margin-top: 3%; */
     /* background-color: aqua; */
     margin-left: 10%;
     margin-right: 10%;
-    
- 
-
 }
 
-@viewport{
-    zoom: 1.0;
+@viewport {
+    zoom: 1;
     width: extend-to-zoom;
 }
 
-.HomePageHeading{
-font-size: 3rem;
+.HomePageHeading {
+    font-size: 3rem;
 }
 
-.HomePageInsideDiv{
-/* background-color: red; */
-height: 200px;
-
-
+.HomePageInsideDiv {
+    /* background-color: red; */
+    height: 200px;
 }
 
-
-.HomePageTopButton{
+.HomePageTopButton {
     margin-bottom: 50px;
-
 }
 
-.HomePageTopDiv{
-background-color: rgba(192, 223, 223, 0.911);
+.HomePageTopDiv {
+    background-color: rgba(192, 223, 223, 0.911);
 }
-
 
 /* *{
     margin: 0;
     padding: 0;
 } */
 
-
 /* @media (max-width: 768px) {
     .HomePageBackground {
         height:100vh;
     }
-} */ 
-
+} */
 
 /* 
 
@@ -89,5 +78,4 @@ background-color: rgba(192, 223, 223, 0.911);
  .LogoPicture{
     /* max-width:100%;
     height:auto; */
- /* }   */
- 
+/* }   */

@@ -7,8 +7,8 @@ import {
     MdChatBubbleOutline,
     MdSettings,
 } from "react-icons/md";
-import {BsCalculatorFill} from "react-icons/bs";
-import {GrCircleInformation} from "react-icons/gr"
+import { BsCalculatorFill } from "react-icons/bs";
+import { GrCircleInformation } from "react-icons/gr";
 import { usePageContext } from "../context/PageContext";
 
 export const Nav = () => {
