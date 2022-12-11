@@ -420,7 +420,7 @@ const editStudent = asynHandler(async (req, res) => {
     if(phoneNumber.length == 0 && address.length == 0)
     {
         console.log("pont2");
-        res.json("No Chanes, no values provided");
+        res.json("No Changes, no values provided");
     }
     else if(phoneNumber.length == 0)
     {   console.log("pont3");
