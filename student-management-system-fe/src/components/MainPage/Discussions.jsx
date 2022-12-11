@@ -1,5 +1,6 @@
 import React from "react";
 import "./Discussions.css";
+import { useAlertContext } from "../../context/AlertContext";
 import { useEffect, useState } from "react";
 import {
     InputGroup,
@@ -24,7 +25,11 @@ export const Discussions = () => {
     const [postShow, setPostShow] = useState(false);
     const [boardShow, setBoardShow] = useState(true);
     const [createShow, setCreateShow] = useState(false);
+<<<<<<< Updated upstream
     const [show, setShow] = useState(false);
+=======
+    const { sendAlert } = useAlertContext();
+>>>>>>> Stashed changes
     let length;
 
     useEffect(() => {
@@ -76,6 +81,14 @@ export const Discussions = () => {
                 content: reply,
             }),
         });
+        const data = await response.json();
+        if (data) {
+            sendAlert("reply added", "success");
+        } else {
+            sendAlert("reply failed", "error");
+        }
+
+
     };
 
     const createPost = async (title, desc) => {
@@ -90,6 +103,13 @@ export const Discussions = () => {
                 post_description: desc,
             }),
         });
+
+        const data = await response.json();
+        if (data) {
+            sendAlert("post created", "success");
+        } else {
+            sendAlert("failed to post", "error");
+        }
     };
 
     const handleClick = (event, title, id) => {
@@ -108,6 +128,7 @@ export const Discussions = () => {
 
         putReply(reply, id);
 
+
         fetchProducts();
     };
 
@@ -121,13 +142,21 @@ export const Discussions = () => {
 
         setCreateShow(false);
         setBoardShow(true);
+
+        fetchProducts();
     };
 
     function handleCreate(e) {
         e.preventDefault();
-        console.log("WORKS");
         setCreateShow(true);
         setBoardShow(false);
+    }
+
+    function handleBackout(e) {
+        e.preventDefault();
+        setCreateShow(false);
+        setPostShow(false);
+        setBoardShow(true);
     }
 
     console.log("data: ", fetchedSingleData);
@@ -147,7 +176,7 @@ export const Discussions = () => {
                             {fetchedData.map((post) => (
                                 <Tbody>
                                     <Thead
-                                        className="display-single-post-header"
+                                        className="display-single-post-header-board"
                                         onClick={(event) =>
                                             handleClick(
                                                 event,
@@ -173,9 +202,22 @@ export const Discussions = () => {
             )}
             {show && postShow && (
                 <div>
-                    <Heading size="1xl">
-                        Discussions > {localStorage.getItem("currentPostTitle")}
-                    </Heading>
+                    <table>
+                        <tr>
+                            <td className="discussion-directory-clickable" onClick={handleBackout}>
+                                <Heading size="1xl">
+                                    Discussions
+                                </Heading>
+                            </td>
+                            <td>
+                                <Heading size="1xl">
+                                    > {localStorage.getItem("currentPostTitle")}
+                                </Heading>
+                            </td>
+
+                        </tr>
+                    </table>
+
                     <br></br>
                     <h2 className="account-header">Post View</h2>
                     <Table className="display-posts">
@@ -251,7 +293,21 @@ export const Discussions = () => {
             )}
             {createShow && (
                 <div>
-                    <Heading size="1xl">Discussion create</Heading>
+                    <table>
+                        <tr>
+                            <td className="discussion-directory-clickable" onClick={handleBackout}>
+                                <Heading size="1xl">
+                                    Discussions
+                                </Heading>
+                            </td>
+                            <td>
+                                <Heading size="1xl">
+                                    > create
+                                </Heading>
+                            </td>
+
+                        </tr>
+                    </table>
                     <br></br>
                     <h2 className="account-header">Create Post</h2>
                     <br />

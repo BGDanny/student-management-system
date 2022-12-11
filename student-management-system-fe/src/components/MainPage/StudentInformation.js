@@ -11,6 +11,7 @@ export const StudentInformation = () => {
 
     let id = localStorage.getItem("id");
 
+
     const fetchProducts = async () => {
         const url = "http://localhost:5000/api/students/" + id;
         axios
@@ -28,26 +29,36 @@ export const StudentInformation = () => {
             <div>
                 <div className="user-info">
                     <div>
-                        <h1 className="header">Student Information</h1>
+                        <br />
+                        <h1 className="header">User Information</h1>
                     </div>
                     <div className="info">
                         <p className="info-text">
-                            <b>Name:</b> {studentInfo.name}
+                            <b>Name:</b>
+                        </p>
+                        <p className="info-text">
+                            {studentInfo.name}
                         </p>
                         <br />
-                        <br />
                         <p className="info-text">
-                            <b>Address:</b> {studentInfo.address}
+                            <b>Email:</b>
+                        </p>
+                        <p className="info-text">
+                            {studentInfo.email}
                         </p>
                         <br />
-                        <br />
                         <p className="info-text">
-                            <b>Phone-Number:</b> {studentInfo.phone_Number}
+                            <b>Address:</b>
+                        </p>
+                        <p className="info-text">
+                            {studentInfo.address}
                         </p>
                         <br />
-                        <br />
                         <p className="info-text">
-                            <b>Email:</b> {studentInfo.email}
+                            <b>Phone-Number:</b>
+                        </p>
+                        <p className="info-text">
+                            {studentInfo.phone_Number}
                         </p>
                     </div>
                 </div>

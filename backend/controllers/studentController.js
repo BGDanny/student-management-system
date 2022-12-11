@@ -370,11 +370,11 @@ const replyPost = asynHandler(async (req, res) => {
             console.log(PostExits);
             if(PostExits)
             {
-            res.json("Reply Added Successfully");
+            res.json(true);
             }
             else
             {
-            res.json("Post doesnot exits");
+            res.json("Post does not exits");
             }
         }
     })
@@ -405,7 +405,7 @@ const createPost = asynHandler(async (req, res) => {
                 res.json({ status: "error", error: 'Error posting' });
             }
             else {
-                res.json("created post");
+                res.json(true);
             }
         });
     } catch (err) {

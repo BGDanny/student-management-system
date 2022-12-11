@@ -13,6 +13,18 @@
     border-radius: 25px;
 }
 
+.discussion-directory-clickable {
+    cursor: pointer;
+}
+
+.display-single-post-header-board {
+    background-color: #bfc4c7;
+    display: block;
+    margin: auto;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
 .display-single-post-header {
     background-color: #bfc4c7;
     display: block;

@@ -179,22 +179,12 @@ export const EnrollCourses = () => {
                     )}
                     {courseName.length > 0 && show && (
                         <div className="en-buttons">
-                            <div>
-                                <Button
-                                    colorScheme="blue"
-                                    onClick={handleEnroll}
-                                >
-                                    Enroll
-                                </Button>
-                            </div>
-                            <div>
-                                <Button
-                                    colorScheme="blue"
-                                    onClick={handleRemove}
-                                >
-                                    Remove Course
-                                </Button>
-                            </div>
+                            <Button
+                                colorScheme="blue"
+                                onClick={handleEnroll}
+                            >
+                                Enroll
+                            </Button>                      
                         </div>
                     )}
                 </div>
