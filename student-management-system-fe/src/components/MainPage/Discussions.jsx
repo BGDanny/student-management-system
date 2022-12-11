@@ -25,11 +25,8 @@ export const Discussions = () => {
     const [postShow, setPostShow] = useState(false);
     const [boardShow, setBoardShow] = useState(true);
     const [createShow, setCreateShow] = useState(false);
-<<<<<<< Updated upstream
     const [show, setShow] = useState(false);
-=======
     const { sendAlert } = useAlertContext();
->>>>>>> Stashed changes
     let length;
 
     useEffect(() => {

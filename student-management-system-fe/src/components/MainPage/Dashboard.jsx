@@ -93,6 +93,7 @@ export const Dashboard = () => {
                             <Th>Location</Th>
                             <Th>Time</Th>
                             <Th>Day</Th>
+                            <Th>Drop</Th>
                         </Tr>
                     </Thead>
                     <Tbody bgColor={"#D9D9D9"}>
