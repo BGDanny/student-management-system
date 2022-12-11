@@ -200,7 +200,7 @@ export const RegisterStudents = () => {
                         </div>
                         <div>
                             <Button type="submit" colorScheme="red">
-                                Remove Section
+                                Remove Student
                             </Button>
                         </div>
                     </form>

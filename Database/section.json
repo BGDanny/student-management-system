@@ -34,5 +34,29 @@ db.section.insertMany([
     course_id: 114,
     start_time: 14,
     end_time: 17
+  },
+  {
+    _id: 4,
+    year: 2023,
+    semester: "Winter",
+    instructor: "Singh",
+    day: "Mopnday",
+    students_id: [ObjectId("6377f37d1721db0b944ba451")],
+    location: "Eng 024",
+    course_id: 115,
+    start_time: 18,
+    end_time: 20
+  },
+  {
+    _id: 5,
+    year: 2023,
+    semester: "Winter",
+    instructor: "Rita",
+    day: "Friday",
+    students_id: [ObjectId("6377f37d1721db0b944ba452")],
+    location: "ICT 251",
+    course_id: 117,
+    start_time: 15,
+    end_time: 17
   }
   ]);
