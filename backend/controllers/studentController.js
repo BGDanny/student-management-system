@@ -64,10 +64,10 @@ const registerStudent = asynHandler(async (req, res) => {
     {
         if(err)
         {
-            res.json({status: "error2", error:'Duplicate email'});
+            res.json("User Already Exists!");
         }
         else {
-            res.json("created");
+            res.json("User Registered Successfully");
         }
     });
     }catch(err)

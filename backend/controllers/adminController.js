@@ -65,10 +65,10 @@ const addSection = asynHandler(async (req, res) => {
     {
         if(err)
         {
-            res.json({status: "error2", error:'Duplicate section'});
+            res.json("Section Already Exists!");
         }
         else {
-            res.json("created");
+            res.json("Section is Created Successfully!");
         }
     });
     }catch(err)
@@ -78,7 +78,7 @@ const addSection = asynHandler(async (req, res) => {
     }
     else 
     {
-        res.json("Start time is greater than end time");
+        res.json("Start time is greater than End time");
     }
 })
 
@@ -106,7 +106,7 @@ const individualAdminData = asynHandler(async (req, res) => {
         {res.json(err)}
         else 
         {
-        res.json("Successful deletion");
+        res.json("Section Successfully Removed");
         }
       });
 
@@ -121,7 +121,7 @@ const individualAdminData = asynHandler(async (req, res) => {
         {res.json(err)}
         else 
         {
-        res.json("Successful deletion");
+        res.json("Student Successfully Removed");
         }
       });
 
