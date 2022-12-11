@@ -1,9 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import {
-    InputGroup,
-    Input,
-    InputLeftElement,
     Heading,
     Text,
     TableContainer,
@@ -14,7 +11,6 @@ import {
     Td,
     Th,
 } from "@chakra-ui/react";
-import { MdSearch } from "react-icons/md";
 import axios from "axios";
 
 export const Dashboard = () => {
@@ -56,11 +52,13 @@ export const Dashboard = () => {
     console.log("data: ", fetchedData);
     return (
         <>
-            <Heading size="1xl">Dashboard</Heading>
-            <Text>Ongoing courses</Text>
-            <TableContainer>
+            <Heading size="lg">Dashboard</Heading>
+            <Text color={"#5E81F4"} fontWeight="bold" marginY={3}>
+                Ongoing courses
+            </Text>
+            <TableContainer marginX={2} borderRadius={25}>
                 <Table variant="simple">
-                    <Thead>
+                    <Thead bgColor={"#FFC670"}>
                         <Tr>
                             <Th>Course</Th>
                             <Th>Instructor</Th>
@@ -69,8 +67,8 @@ export const Dashboard = () => {
                             <Th>Day</Th>
                         </Tr>
                     </Thead>
-                    {fetchedData.map((section) => (
-                        <Tbody>
+                    <Tbody bgColor={"#D9D9D9"}>
+                        {fetchedData.map((section) => (
                             <Tr>
                                 <Td>
                                     {section.course_id.course_Name}:{" "}
@@ -83,8 +81,8 @@ export const Dashboard = () => {
                                 </Td>
                                 <Td>{section.day}</Td>
                             </Tr>
-                        </Tbody>
-                    ))}
+                        ))}
+                    </Tbody>
                 </Table>
             </TableContainer>
         </>

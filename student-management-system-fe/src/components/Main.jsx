@@ -9,6 +9,7 @@ import {
     StudentInformation,
     ViewGrades,
 } from "./MainPage";
+import { Box } from "@chakra-ui/react";
 
 import GpaCalculator from "./MainPage/GpaCalculator";
 
@@ -37,5 +38,5 @@ export const Main = () => {
                 return <Dashboard />;
         }
     };
-    return renderMainPage();
+    return <Box marginTop={5}>{renderMainPage()}</Box>;
 };
