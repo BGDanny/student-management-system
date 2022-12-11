@@ -24,6 +24,7 @@ export const Discussions = () => {
     const [postShow, setPostShow] = useState(false);
     const [boardShow, setBoardShow] = useState(true);
     const [createShow, setCreateShow] = useState(false);
+    const [show, setShow] = useState(false);
     let length;
 
     useEffect(() => {
@@ -57,6 +58,7 @@ export const Discussions = () => {
             .then((res) => {
                 console.log("LOOK" + res.data);
                 setFetchedSingleData(res.data);
+                setShow(true);
             })
             .catch((err) => {
                 console.log(err);
@@ -169,7 +171,7 @@ export const Discussions = () => {
                     </div>
                 </div>
             )}
-            {postShow && (
+            {show && postShow && (
                 <div>
                     <Heading size="1xl">
                         Discussions > {localStorage.getItem("currentPostTitle")}

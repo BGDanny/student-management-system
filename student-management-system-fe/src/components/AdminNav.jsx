@@ -38,7 +38,7 @@ export const AdminNav = () => {
                 Add/Remove Sections
             </Button>
             <Button leftIcon={<BiRegistered />} onClick={handleClick(3)}>
-                Register Students
+                Register/Remove Students
             </Button>
             <Button leftIcon={<HiBookmark />} onClick={handleClick(4)}>
                 Add Grades

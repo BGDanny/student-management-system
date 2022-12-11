@@ -62,6 +62,9 @@ export const RegisterStudents = () => {
             const data = await response.json();
             sendAlert(JSON.stringify(data));
         }
+        else {
+            sendAlert("Invalid Fields");
+        }
     }
 
     async function removeHandler(e) {
