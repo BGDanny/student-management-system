@@ -2,6 +2,7 @@ const asynHandler  = require("express-async-handler");
 const Admin = require("../models/adminModel");
 const Section = require("../models/sectionModel");
 const Student = require("../models/studentModel");
+const Course = require("../models/courseModel");
 
 const loginAdmin = asynHandler(async (req, res) => {
 
@@ -64,10 +65,10 @@ const addSection = asynHandler(async (req, res) => {
     {
         if(err)
         {
-            res.json({status: "error2", error:'Duplicate section'});
+            res.json("Section Already Exists!");
         }
         else {
-            res.json("created");
+            res.json("Section is Created Successfully!");
         }
     });
     }catch(err)
@@ -77,7 +78,7 @@ const addSection = asynHandler(async (req, res) => {
     }
     else 
     {
-        res.json("Start time is greater than end time");
+        res.json("Start time is greater than End time");
     }
 })
 
@@ -105,7 +106,7 @@ const individualAdminData = asynHandler(async (req, res) => {
         {res.json(err)}
         else 
         {
-        res.json("Successful deletion");
+        res.json("Section Successfully Removed");
         }
       });
 
@@ -120,11 +121,28 @@ const individualAdminData = asynHandler(async (req, res) => {
         {res.json(err)}
         else 
         {
-        res.json("Successful deletion");
+        res.json("Student Successfully Removed");
         }
       });
 
  });
 
+ const allSections = asynHandler(async (req, res) => {
+    Section.find().populate({
+        path: 'course_id',
+        model: 'Course'
+    }).exec(async function (err, sections)
+        {
+            if(err)
+            {
+                console.log(err);
+            }
+            else
+            {
+                res.json(sections);
+            }
+        })
+});
 
-module.exports = {loginAdmin, addSection,individualAdminData, removeSection,removeStudent};
+
+module.exports = {loginAdmin, addSection,individualAdminData, removeSection,removeStudent, allSections};

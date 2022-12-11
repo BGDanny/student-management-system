@@ -1,6 +1,6 @@
 .display-tution {
-    height: 100px;
-    width: 60%;
+    height: 130px;
+    width: 70%;
     margin: auto;
     margin-top: 10%;
     background-color: #d6eaf8;
@@ -55,10 +55,11 @@
 
 .form-card-container {
     width: 80%;
-    height: 500px;
-    background-color: #edbb99;
+    height: 400px;
+    background-color:#D4E6F1;
     margin: auto;
     margin-top: 10%;
+    border-radius: 20px;
 }
 
 .pay-header {
@@ -70,4 +71,8 @@
     display: flex;
     flex-direction: row;
     gap: 30px;
+}
+
+.div-gap {
+    margin-bottom: 2%;
 }

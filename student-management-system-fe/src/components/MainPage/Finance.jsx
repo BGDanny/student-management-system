@@ -205,7 +205,7 @@ export const Finance = () => {
                             <h1 className="pay-header">Payment Information</h1>
                         </div>
                         <form className="form-card" onSubmit={payHandler}>
-                            <div>
+                            <div className="div-gap">
                                 <input
                                     type="number"
                                     name="Amount"
@@ -216,7 +216,7 @@ export const Finance = () => {
                                     required
                                 />
                             </div>
-                            <div>
+                            <div className="div-gap">
                                 <input
                                     type="text"
                                     name="CardNumber"
@@ -224,7 +224,7 @@ export const Finance = () => {
                                     required
                                 />
                             </div>
-                            <div>
+                            <div className="div-gap">
                                 <input
                                     type="text"
                                     name="CardName"
@@ -232,7 +232,7 @@ export const Finance = () => {
                                     required
                                 />
                             </div>
-                            <div className="expiry-cvv">
+                            <div className="expiry-cvv div-gap">
                                 <div>
                                     <select
                                         name="expireMM"
@@ -271,12 +271,13 @@ export const Finance = () => {
                                         type="password"
                                         name="cvv"
                                         size="2"
+                                        placeholder="CVV"
                                         required
                                     />
                                 </div>
                             </div>
 
-                            <div>
+                            <div className="div-gap">
                                 <Button type="submit" colorScheme="blue">
                                     Pay
                                 </Button>

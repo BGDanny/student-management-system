@@ -1,4 +1,6 @@
 import React from "react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useAlertContext } from "../../context/AlertContext";
 import { useEffect, useState } from "react";
 import {
     Heading,
@@ -15,6 +17,7 @@ import axios from "axios";
 
 export const Dashboard = () => {
     const [fetchedData, setFetchedData] = useState([]);
+    const { sendAlert } = useAlertContext();
     let length;
 
     useEffect(() => {
@@ -48,6 +51,31 @@ export const Dashboard = () => {
                 console.log(err);
             });
     };
+    const handleRemove = (event, courseId) => {
+        event.preventDefault();
+        removeCourse(courseId)
+    };
+    async function removeCourse(courseId) {
+        let section = courseId;
+        let id = localStorage.getItem("id");
+        const url = "http://localhost:5000/api/students/sections/" + id;
+        const response = await fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                section,
+            }),
+        });
+        const data = await response.json();
+        if (data) {
+            sendAlert("Course is removed successfully", "success");
+        } else {
+            sendAlert("Course does not exist", "error");
+        }
+    }
+
 
     console.log("data: ", fetchedData);
     return (
@@ -65,6 +93,7 @@ export const Dashboard = () => {
                             <Th>Location</Th>
                             <Th>Time</Th>
                             <Th>Day</Th>
+                            <Th>Drop</Th>
                         </Tr>
                     </Thead>
                     <Tbody bgColor={"#D9D9D9"}>
@@ -80,6 +109,19 @@ export const Dashboard = () => {
                                     {section.start_time} - {section.end_time}
                                 </Td>
                                 <Td>{section.day}</Td>
+                                <td>
+                                    <Button
+                                        colorScheme="red"
+                                        onClick={(event) =>
+                                            handleRemove(
+                                                event,
+                                                section._id
+                                            )
+                                        }
+                                    >
+                                        Drop
+                                    </Button>
+                                </td>
                             </Tr>
                         ))}
                     </Tbody>

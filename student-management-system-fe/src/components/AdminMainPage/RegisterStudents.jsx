@@ -62,6 +62,9 @@ export const RegisterStudents = () => {
             const data = await response.json();
             sendAlert(JSON.stringify(data));
         }
+        else {
+            sendAlert("Invalid Fields");
+        }
     }
 
     async function removeHandler(e) {
@@ -200,7 +203,7 @@ export const RegisterStudents = () => {
                         </div>
                         <div>
                             <Button type="submit" colorScheme="red">
-                                Remove Section
+                                Remove Student
                             </Button>
                         </div>
                     </form>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Discussions.css";
+import { useAlertContext } from "../../context/AlertContext";
 import { useEffect, useState } from "react";
 import {
     InputGroup,
@@ -24,10 +25,16 @@ export const Discussions = () => {
     const [postShow, setPostShow] = useState(false);
     const [boardShow, setBoardShow] = useState(true);
     const [createShow, setCreateShow] = useState(false);
+    const [show, setShow] = useState(false);
+    const { sendAlert } = useAlertContext();
     let length;
 
     useEffect(() => {
         fetchProducts();
+        const interval = setInterval(() => {
+            fetchProducts();
+        }, 3000)
+        return()=>clearInterval(interval)
     }, []);
 
     let id = localStorage.getItem("id");
@@ -53,6 +60,7 @@ export const Discussions = () => {
             .then((res) => {
                 console.log("LOOK" + res.data);
                 setFetchedSingleData(res.data);
+                setShow(true);
             })
             .catch((err) => {
                 console.log(err);
@@ -70,6 +78,14 @@ export const Discussions = () => {
                 content: reply,
             }),
         });
+        const data = await response.json();
+        if (data) {
+            sendAlert("reply added", "success");
+        } else {
+            sendAlert("reply failed", "error");
+        }
+
+
     };
 
     const createPost = async (title, desc) => {
@@ -84,6 +100,13 @@ export const Discussions = () => {
                 post_description: desc,
             }),
         });
+
+        const data = await response.json();
+        if (data) {
+            sendAlert("post created", "success");
+        } else {
+            sendAlert("failed to post", "error");
+        }
     };
 
     const handleClick = (event, title, id) => {
@@ -102,6 +125,7 @@ export const Discussions = () => {
 
         putReply(reply, id);
 
+
         fetchProducts();
     };
 
@@ -115,13 +139,21 @@ export const Discussions = () => {
 
         setCreateShow(false);
         setBoardShow(true);
+
+        fetchProducts();
     };
 
     function handleCreate(e) {
         e.preventDefault();
-        console.log("WORKS");
         setCreateShow(true);
         setBoardShow(false);
+    }
+
+    function handleBackout(e) {
+        e.preventDefault();
+        setCreateShow(false);
+        setPostShow(false);
+        setBoardShow(true);
     }
 
     console.log("data: ", fetchedSingleData);
@@ -129,8 +161,6 @@ export const Discussions = () => {
         <>
             {boardShow && (
                 <div>
-                    <Heading size="1xl">Discussions</Heading>
-                    <br />
                     <h2 className="account-header">Discussion Board</h2>
                     <br />
                     <div className="display-posts">
@@ -143,7 +173,7 @@ export const Discussions = () => {
                             {fetchedData.map((post) => (
                                 <Tbody>
                                     <Thead
-                                        className="display-single-post-header"
+                                        className="display-single-post-header-board"
                                         onClick={(event) =>
                                             handleClick(
                                                 event,
@@ -153,13 +183,13 @@ export const Discussions = () => {
                                         }
                                     >
                                         <Tr>
-                                            <Th>{post.post_title}</Th>
+                                            <Th className="post">{post.post_title}</Th>
                                         </Tr>
                                     </Thead>
 
                                     <tr
-                                        class="display-single-post-spacer"
-                                        colspan="2"
+                                        className="display-single-post-spacer"
+                                        colSpan="2"
                                     ></tr>
                                 </Tbody>
                             ))}
@@ -167,11 +197,24 @@ export const Discussions = () => {
                     </div>
                 </div>
             )}
-            {postShow && (
+            {show && postShow && (
                 <div>
-                    <Heading size="1xl">
-                        Discussions > {localStorage.getItem("currentPostTitle")}
-                    </Heading>
+                    <table>
+                        <tr>
+                            <td className="discussion-directory-clickable" onClick={handleBackout}>
+                                <Heading size="1xl">
+                                    Discussions
+                                </Heading>
+                            </td>
+                            <td>
+                                <Heading size="1xl">
+                                    > {localStorage.getItem("currentPostTitle")}
+                                </Heading>
+                            </td>
+
+                        </tr>
+                    </table>
+
                     <br></br>
                     <h2 className="account-header">Post View</h2>
                     <Table className="display-posts">
@@ -194,8 +237,8 @@ export const Discussions = () => {
                                 </Tr>
                             </div>
                             <tr
-                                class="display-single-post-spacer"
-                                colspan="2"
+                                className="display-single-post-spacer"
+                                colSpan="2"
                             ></tr>
                             <Tr className="display-single-post-replybox">
                                 <div id="replyBox">
@@ -220,8 +263,8 @@ export const Discussions = () => {
                                 </div>
                             </Tr>
                             <tr
-                                class="display-single-post-spacer"
-                                colspan="2"
+                                className="display-single-post-spacer"
+                                colSpan="2"
                             ></tr>
                             <Thead className="display-single-post-replies">
                                 <Tr>
@@ -236,8 +279,8 @@ export const Discussions = () => {
                                         </Tr>
                                     </div>
                                     <tr
-                                        class="display-single-post-spacer"
-                                        colspan="2"
+                                        className="display-single-post-spacer"
+                                        colSpan="2"
                                     ></tr>
                                 </div>
                             ))}
@@ -247,7 +290,21 @@ export const Discussions = () => {
             )}
             {createShow && (
                 <div>
-                    <Heading size="1xl">Discussion create</Heading>
+                    <table>
+                        <tr>
+                            <td className="discussion-directory-clickable" onClick={handleBackout}>
+                                <Heading size="1xl">
+                                    Discussions
+                                </Heading>
+                            </td>
+                            <td>
+                                <Heading size="1xl">
+                                    > create
+                                </Heading>
+                            </td>
+
+                        </tr>
+                    </table>
                     <br></br>
                     <h2 className="account-header">Create Post</h2>
                     <br />
@@ -257,10 +314,10 @@ export const Discussions = () => {
                                 <Th>Title</Th>
                             </tr>
                             <Tr className="display-single-post-replybox">
-                                <textarea
+                                <input
                                     type="text"
                                     id="titleField"
-                                ></textarea>
+                                ></input>
                             </Tr>
                             <br />
                             <tr>
@@ -271,17 +328,17 @@ export const Discussions = () => {
                             </Tr>
                             <br />
                             <Tr className="display-single-post-replybox">
-                                <button
+                                <button 
                                     id="createButton"
                                     onClick={handleCreateSubmit}
                                 >
-                                    Reply
+                                    Post
                                 </button>
                             </Tr>
 
                             <tr
-                                class="display-single-post-spacer"
-                                colspan="2"
+                                className="display-single-post-spacer"
+                                colSpan="2"
                             ></tr>
                         </Tbody>
                     </Table>

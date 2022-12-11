@@ -2,6 +2,7 @@ import "./Login.css";
 import { useState } from "react";
 import React from "react";
 import { useAlertContext } from "../context/AlertContext";
+import {AiFillEye} from 'react-icons/ai'
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -38,6 +39,16 @@ function Login() {
         }
         console.log(data);
     }
+
+    function myFunction(e) {
+        e.preventDefault();
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
     return (
         <div className="flex items-center h-screen w-full MainDiv ">
             <button
@@ -49,7 +60,7 @@ function Login() {
             </button>
 
             <div className="w-full rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto rect">
-                <span className="block w-full text-xl uppercase font-bold mb-4">
+                <span className="block w-full text-xl uppercase font-bold mb-4 centr">
                     Student Login
                 </span>
                 <form className="mb-4" action="/" method="post">
@@ -79,7 +90,8 @@ function Login() {
                             placeholder="Enter Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                        />
+                        ></input>
+                        <button type="button" className="Visible" onClick={myFunction} ><AiFillEye size={20}></AiFillEye></button>
                     </div>
                     <div className="col-md-12 text-center">
                         <button
