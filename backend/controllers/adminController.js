@@ -2,6 +2,7 @@ const asynHandler  = require("express-async-handler");
 const Admin = require("../models/adminModel");
 const Section = require("../models/sectionModel");
 const Student = require("../models/studentModel");
+const Course = require("../models/courseModel");
 
 const loginAdmin = asynHandler(async (req, res) => {
 
@@ -126,5 +127,22 @@ const individualAdminData = asynHandler(async (req, res) => {
 
  });
 
+ const allSections = asynHandler(async (req, res) => {
+    Section.find().populate({
+        path: 'course_id',
+        model: 'Course'
+    }).exec(async function (err, sections)
+        {
+            if(err)
+            {
+                console.log(err);
+            }
+            else
+            {
+                res.json(sections);
+            }
+        })
+});
 
-module.exports = {loginAdmin, addSection,individualAdminData, removeSection,removeStudent};
+
+module.exports = {loginAdmin, addSection,individualAdminData, removeSection,removeStudent, allSections};

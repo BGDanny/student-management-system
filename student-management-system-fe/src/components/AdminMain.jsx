@@ -5,6 +5,7 @@ import {
     AddSections,
     AddGrades,
     ViewStudents,
+    ViewSections
 } from "./AdminMainPage";
 
 export const AdminMain = () => {
@@ -15,10 +16,12 @@ export const AdminMain = () => {
             case 0:
                 return <ViewStudents />;
             case 1:
-                return <AddSections />;
+                return <ViewSections />;    
             case 2:
-                return <RegisterStudents />;
+                return <AddSections />;
             case 3:
+                return <RegisterStudents />;
+            case 4:
                 return <AddGrades />;
             default:
                 return <ViewStudents />;

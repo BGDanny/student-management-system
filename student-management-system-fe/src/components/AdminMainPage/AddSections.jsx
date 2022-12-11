@@ -1,8 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import "./AddSection.css";
 import { useAlertContext } from "../../context/AlertContext";
+import axios from "axios";
 
 export const AddSections = () => {
     const [year, setYear] = useState();
@@ -14,6 +15,26 @@ export const AddSections = () => {
     const [startTime, setStartTime] = useState(0);
     const [endTime, setEndTime] = useState(0);
     const { sendAlert } = useAlertContext();
+    const [fetchedData, setFetchedData] = useState([{}]);
+    const [show, setShow] =useState(false);
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        const url = "http://localhost:5000/api/admin/";
+        axios
+            .get(url)
+            .then((res) => {
+                console.log(res.data);
+                setFetchedData(res.data);
+                setShow(true);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     async function submitHandler(e) {
         e.preventDefault();
@@ -222,21 +243,12 @@ export const AddSections = () => {
                                 type="number"
                                 name="courses"
                                 onChange={(e) => setCourse(e.target.value)}
+                                menuPortalTarget={document.body} 
+                                menuPosition={'fixed'}
                                 required
                             >
                                 <option></option>
-                                <option value="111">Cpsc 457</option>
-                                <option value="112">Cpsc 441</option>
-                                <option value="113">Cpsc 449</option>
-                                <option value="114">Cpsc 411</option>
-                                <option value="115">Cpsc 413</option>
-                                <option value="116">Cpsc 418</option>
-                                <option value="117">Cpsc 433</option>
-                                <option value="118">Cpsc 461</option>
-                                <option value="119">Cpsc 471</option>
-                                <option value="120">Cpsc 491</option>
-                                <option value="121">Cpsc 499</option>
-                                <option value="122">Cpsc 502</option>
+                                {show && fetchedData.map((course) => (<option value={course.course_id._id}>{course.course_id.course_Name}</option>))}
                             </select>
                         </div>
                         <div>

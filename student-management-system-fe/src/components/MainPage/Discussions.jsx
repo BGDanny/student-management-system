@@ -28,6 +28,10 @@ export const Discussions = () => {
 
     useEffect(() => {
         fetchProducts();
+        const interval = setInterval(() => {
+            fetchProducts();
+        }, 3000)
+        return()=>clearInterval(interval)
     }, []);
 
     let id = localStorage.getItem("id");
@@ -129,8 +133,6 @@ export const Discussions = () => {
         <>
             {boardShow && (
                 <div>
-                    <Heading size="1xl">Discussions</Heading>
-                    <br />
                     <h2 className="account-header">Discussion Board</h2>
                     <br />
                     <div className="display-posts">
@@ -153,13 +155,13 @@ export const Discussions = () => {
                                         }
                                     >
                                         <Tr>
-                                            <Th>{post.post_title}</Th>
+                                            <Th className="post">{post.post_title}</Th>
                                         </Tr>
                                     </Thead>
 
                                     <tr
-                                        class="display-single-post-spacer"
-                                        colspan="2"
+                                        className="display-single-post-spacer"
+                                        colSpan="2"
                                     ></tr>
                                 </Tbody>
                             ))}
@@ -194,8 +196,8 @@ export const Discussions = () => {
                                 </Tr>
                             </div>
                             <tr
-                                class="display-single-post-spacer"
-                                colspan="2"
+                                className="display-single-post-spacer"
+                                colSpan="2"
                             ></tr>
                             <Tr className="display-single-post-replybox">
                                 <div id="replyBox">
@@ -220,8 +222,8 @@ export const Discussions = () => {
                                 </div>
                             </Tr>
                             <tr
-                                class="display-single-post-spacer"
-                                colspan="2"
+                                className="display-single-post-spacer"
+                                colSpan="2"
                             ></tr>
                             <Thead className="display-single-post-replies">
                                 <Tr>
@@ -236,8 +238,8 @@ export const Discussions = () => {
                                         </Tr>
                                     </div>
                                     <tr
-                                        class="display-single-post-spacer"
-                                        colspan="2"
+                                        className="display-single-post-spacer"
+                                        colSpan="2"
                                     ></tr>
                                 </div>
                             ))}
@@ -257,10 +259,10 @@ export const Discussions = () => {
                                 <Th>Title</Th>
                             </tr>
                             <Tr className="display-single-post-replybox">
-                                <textarea
+                                <input
                                     type="text"
                                     id="titleField"
-                                ></textarea>
+                                ></input>
                             </Tr>
                             <br />
                             <tr>
@@ -271,17 +273,17 @@ export const Discussions = () => {
                             </Tr>
                             <br />
                             <Tr className="display-single-post-replybox">
-                                <button
+                                <button 
                                     id="createButton"
                                     onClick={handleCreateSubmit}
                                 >
-                                    Reply
+                                    Post
                                 </button>
                             </Tr>
 
                             <tr
-                                class="display-single-post-spacer"
-                                colspan="2"
+                                className="display-single-post-spacer"
+                                colSpan="2"
                             ></tr>
                         </Tbody>
                     </Table>

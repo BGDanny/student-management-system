@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import React from "react";
 import { useAlertContext } from "../context/AlertContext";
+import {AiFillEye} from 'react-icons/ai'
 
 function AdminLogin() {
     const [email, setEmail] = useState("");
@@ -39,6 +40,16 @@ function AdminLogin() {
         }
         console.log(data);
     }
+
+    function myFunction(e) {
+        e.preventDefault();
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
     return (
         <div className="flex items-center h-screen w-full TopDiv ">
             <button
@@ -81,6 +92,7 @@ function AdminLogin() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                         <button type="button" className="Visible" onClick={myFunction} ><AiFillEye size={20}></AiFillEye></button>
                     </div>
                     <div className="col-md-12 text-center">
                         <button

@@ -40,6 +40,10 @@
     display: block;
 }
 
+.post:hover {
+    cursor: pointer;
+}
+
 #replyBox {
     width: 100%;
     height: 100px;
@@ -53,6 +57,8 @@
     width: 100%;
     border-radius: 15px;
     resize: none;
+    padding: 5px;
+    
 }
 
 #replyButton {
@@ -78,6 +84,7 @@
     width: 100%;
     border-radius: 15px;
     resize: none;
+    padding: 5px;
 }
 
 #descField {
@@ -86,4 +93,10 @@
     width: 100%;
     border-radius: 15px;
     resize: none;
+    padding: 5px;
+}
+
+.account-header  {
+    font-size: 2rem;
+    margin-top: 5%;
 }
