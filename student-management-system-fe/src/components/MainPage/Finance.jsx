@@ -17,6 +17,7 @@ import {
     Th,
     Button
 } from "@chakra-ui/react";
+import { useAlertContext } from "../../context/AlertContext";
 export const Finance = () => {
 
     const [fetchedData, setFetchedData] = useState([{}]);
@@ -25,6 +26,7 @@ export const Finance = () => {
     const [fee, setFees] = useState(0);
     const [payShow, setPayShow] = useState(false);
     const [amountPaid, setAmounPaid] = useState(0);
+    const { sendAlert } = useAlertContext();
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -65,7 +67,7 @@ export const Finance = () => {
 
     async function payHandler(e) {
         e.preventDefault();
-        alert("paid");
+        sendAlert("Paid", "success");
         const url = "http://localhost:5000/api/students/addReceipt/" + id;
         let fees = amountPaid;
         console.log("the amount paid is" + fees);

@@ -18,6 +18,7 @@ import {
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { MdSearch } from "react-icons/md";
 import axios from "axios";
+import { useAlertContext } from "../../context/AlertContext";
 export const EnrollCourses = () => {
     const [fetchedData, setFetchedData] = useState();
     const [courseName, setCourseName] = useState("");
@@ -33,6 +34,7 @@ export const EnrollCourses = () => {
 
     const [show, setShow] = useState(false);
     const [avail, setAvail] = useState(false);
+    const { sendAlert } = useAlertContext()
       
     function showCourses(e)
     {
@@ -95,11 +97,11 @@ export const EnrollCourses = () => {
         const data = await response.json();
         if(data)
         {
-            alert("Course is enrolled successfully");
+            sendAlert("Course is enrolled successfully", "success");
         }
         else 
         {
-            alert("Course is already Enrolled");
+            sendAlert("Course is already Enrolled", "error");
         }
     }
 
@@ -121,11 +123,11 @@ export const EnrollCourses = () => {
         const data = await response.json();
           if(data)
           {
-            alert("Course is removed successfully");
+            sendAlert("Course is removed successfully", "success");
           }
           else 
           {
-            alert("Course doesnot Exists");
+            sendAlert("Course does not exist", "error");
           }
     }
 

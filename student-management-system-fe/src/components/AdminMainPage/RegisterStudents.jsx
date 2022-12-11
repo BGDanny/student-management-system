@@ -3,6 +3,7 @@ import { useState, useEffect} from "react";
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import axios from 'axios'
 import './RegisterStudent.css'
+import { useAlertContext } from "../../context/AlertContext";
 
 export const RegisterStudents = () => {
     const [name, setName] = useState("");
@@ -12,6 +13,7 @@ export const RegisterStudents = () => {
     const [password, setPassword] = useState("");
     const [confPassword, setConfPassword] = useState("");
     const [fetchedData, setFetchedData]  = useState([{}]);
+    const { sendAlert } = useAlertContext();
 
     useEffect(() => {
         fetchProducts();
@@ -33,7 +35,7 @@ export const RegisterStudents = () => {
         e.preventDefault();
         if(password != confPassword)
         {
-            alert("Password doesnot match");
+            sendAlert("Password does not match", "error");
             
         }
         else if(password.length >= 7 && password == confPassword && (phoneNumber.length == 10 && phoneNumber.match("[0-9]+"))) 
@@ -49,7 +51,7 @@ export const RegisterStudents = () => {
             })
     
             const data = await response.json();
-            alert(JSON.stringify(data));
+            sendAlert(JSON.stringify(data));
         }
     }
 
@@ -65,7 +67,7 @@ export const RegisterStudents = () => {
         })
 
         const data = await response.json();
-        alert(JSON.stringify(data));
+        sendAlert(JSON.stringify(data));
     }
 
     return <>

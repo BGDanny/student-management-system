@@ -3,10 +3,12 @@ import './Login.css'
 import {Link} from "react-router-dom";
 import {useState} from 'react';
 import React from 'react';
+import { useAlertContext } from '../context/AlertContext';
 
 function AdminLogin(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { sendAlert } = useAlertContext();
 
     async function backHandler(e)
     {
@@ -31,10 +33,10 @@ function AdminLogin(){
         localStorage.setItem('id', data.id);
 
         if (data.found) {
-            alert("Login Successfull");
+            sendAlert("Login Successfull", "success");
             window.location.href = "/adminPage";
         } else {
-            alert("Wrong Email and Password");
+            sendAlert("Wrong Email and Password", "error");
         }
         console.log(data);
     }

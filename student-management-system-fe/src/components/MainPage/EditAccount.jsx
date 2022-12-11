@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import './EditPage.css'
 import { useRef } from "react";
+import { useAlertContext } from "../../context/AlertContext";
 
 export const EditAccount = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -10,6 +11,7 @@ export const EditAccount = () => {
     const [confPassword, setConfPassword] = useState("");
     const pas1Ref = useRef(null);
     const pas2Ref = useRef(null);
+    const { sendAlert } = useAlertContext()
       async function submitPersonalInformationHandler(e) {
         e.preventDefault();
         const id = localStorage.getItem('id');
@@ -24,7 +26,7 @@ export const EditAccount = () => {
             }),
         })
         const data = await response.json();
-        alert(data); 
+        sendAlert(data); 
     };
 
     async function submitPasswordInformationHandler(event) {
@@ -43,13 +45,13 @@ export const EditAccount = () => {
             }),
         })
         const data = await response.json();
-        alert(data); 
+        sendAlert(data); 
         setPassword('');
         setConfPassword('');
         }
         else 
         {
-        alert("Password and Confirm Password do not match");   
+        sendAlert("Password and Confirm Password do not match", "error");   
         setPassword('');
         setConfPassword('');
         }

@@ -1,7 +1,6 @@
 import React from "react";
 import { usePageContext } from "../context/PageContext";
 import {
-    AllCourses,
     Dashboard,
     Discussions,
     EditAccount,
