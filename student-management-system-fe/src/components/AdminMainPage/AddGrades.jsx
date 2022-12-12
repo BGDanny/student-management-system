@@ -37,6 +37,8 @@ export const AddGrades = () => {
                             <input
                                 type="email"
                                 name="eamil"
+                                className="brd"
+                                placeholder="Enter Email"
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             ></input>
@@ -48,6 +50,7 @@ export const AddGrades = () => {
                                 type="text"
                                 id="grades"
                                 name="grades"
+                                className="brd"
                                 onChange={(e) => setLetterGrade(e.target.value)}
                             >
                                 <option value="0"> </option>
@@ -71,6 +74,7 @@ export const AddGrades = () => {
                             <select
                                 type="number"
                                 name="courses"
+                                className="brd"
                                 onChange={(e) => setCourseId(e.target.value)}
                                 required
                             >

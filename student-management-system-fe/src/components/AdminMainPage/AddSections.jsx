@@ -91,6 +91,7 @@ export const AddSections = () => {
                             <select
                                 type="number"
                                 name="Year"
+                                className="brd"
                                 onChange={(e) => setYear(e.target.value)}
                                 required
                             >
@@ -106,6 +107,7 @@ export const AddSections = () => {
                             <select
                                 type="text"
                                 name="Year"
+                                className="brd"
                                 onChange={(e) => setSemester(e.target.value)}
                                 required
                             >
@@ -120,6 +122,7 @@ export const AddSections = () => {
                             <input
                                 type="text"
                                 name="instructor"
+                                className="brd"
                                 placeholder="Enter Instructor Name"
                                 onChange={(e) => setInstructor(e.target.value)}
                             />
@@ -130,6 +133,7 @@ export const AddSections = () => {
                             <select
                                 type="text"
                                 name="Weekdays"
+                                className="brd"
                                 onChange={(e) => setDay(e.target.value)}
                                 required
                             >
@@ -147,6 +151,7 @@ export const AddSections = () => {
                             <input
                                 type="text"
                                 name="location"
+                                className="brd"
                                 placeholder="Enter Location "
                                 onChange={(e) => setLocation(e.target.value)}
                             />
@@ -157,6 +162,7 @@ export const AddSections = () => {
                             <select
                                 type="number"
                                 name="courses"
+                                className="brd"
                                 onChange={(e) => setCourse(e.target.value)}
                                 required
                             >
@@ -181,6 +187,7 @@ export const AddSections = () => {
                             <select
                                 type="number"
                                 name="courses"
+                                className="brd"
                                 onChange={(e) => setStartTime(e.target.value)}
                                 required
                             >
@@ -205,6 +212,7 @@ export const AddSections = () => {
                             <select
                                 type="number"
                                 name="courses"
+                                className="brd"
                                 onChange={(e) => setEndTime(e.target.value)}
                                 required
                             >
@@ -242,6 +250,7 @@ export const AddSections = () => {
                             <select
                                 type="number"
                                 name="courses"
+                                className="brd"
                                 onChange={(e) => setCourse(e.target.value)}
                                 menuPortalTarget={document.body} 
                                 menuPosition={'fixed'}
