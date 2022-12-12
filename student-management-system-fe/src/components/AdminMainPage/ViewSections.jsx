@@ -43,8 +43,12 @@ export const ViewSections = () => {
 
     return (
         <>
-            <Heading size="1xl" className="format-title">Sections Information</Heading>
-            <TableContainer>
+            <h1 className="view-student-title">Section Information</h1>
+                 <section className="view-student-background">
+            <section className="view-student-grid">
+                <div className="view-student-table">
+                    <h3>Enrolled courses</h3>
+                <div>
                 <Table variant="simple">
                 <Thead>
                         <Tr>
@@ -72,7 +76,10 @@ export const ViewSections = () => {
                         </Tbody>
                     ))}
                 </Table>
-            </TableContainer>
+                </div>
+                </div>
+                </section>
+                </section>
         </>
     );
 };

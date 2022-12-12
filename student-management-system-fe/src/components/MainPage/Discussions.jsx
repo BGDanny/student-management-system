@@ -195,7 +195,7 @@ export const Discussions = () => {
             </div>}
 
             {postShow && <div className="wrapper">
-                <Heading size="1xl">Discussions > {localStorage.getItem('currentPostTitle')}</Heading>
+                <Heading size="1xl">Discussions  {localStorage.getItem('currentPostTitle')}</Heading>
                 <br></br>
                 <h2 className="account-header">Post View</h2>
                 <section className="disc-background">
@@ -228,7 +228,7 @@ export const Discussions = () => {
                 <button id="backButton" onClick={() => handleBack()}>Back</button>
             </div>}
             {createShow && <div>
-                <Heading size="1xl">Discussion > Create</Heading>
+                <Heading size="1xl">Discussion Create</Heading>
                 <br></br>
                 <h2 className="account-header">Create Post</h2>
                 <section className="disc-background">

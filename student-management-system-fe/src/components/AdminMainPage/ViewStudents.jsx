@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { MdSearch } from "react-icons/md";
 import axios from "axios";
+import './ViewStudents.css';
 
 export const ViewStudents = () => {
     const [fetchedData, setFetchedData] = useState([{}]);
@@ -25,44 +26,47 @@ export const ViewStudents = () => {
     }, []);
 
     const fetchProducts = async () => {
-        const url = "http://localhost:5000/api/students";
-        axios
-            .get(url)
-            .then((res) => {
-                console.log(res.data);
-                setFetchedData(res.data);
-            })
+        const url = "http://localhost:5000/api/students"
+        axios.get(url).then((res) => {
+            console.log(res.data);
+            setFetchedData(res.data);
+        })
             .catch((err) => {
                 console.log(err);
-            });
+            })
     };
 
-    return (
-        <>
-            <Heading size="1xl">Student Information</Heading>
-            <Text>Enrolled Students</Text>
-            <TableContainer>
-                <Table variant="simple">
-                    <Thead>
-                        <Tr>
-                            <Th>Student Name</Th>
-                            <Th>Student Email</Th>
-                            <Th>Student Phone Number</Th>
-                            <Th>Student Address</Th>
-                        </Tr>
-                    </Thead>
-                    {fetchedData.map((student) => (
-                        <Tbody>
-                            <Tr>
-                                <Td>{student.name}</Td>
-                                <Td>{student.email}</Td>
-                                <Td>{student.phone_Number}</Td>
-                                <Td>{student.address}</Td>
-                            </Tr>
-                        </Tbody>
-                    ))}
-                </Table>
-            </TableContainer>
-        </>
-    );
+    return <>
+        <h1 className="view-student-title">Student Information</h1>
+
+        <section className="view-student-background">
+            <section className="view-student-grid">
+                <div className="view-student-table">
+                    <h3>Enrolled Students</h3>
+                    <div>
+                        <Table variant="simple">
+                            <Thead>
+                                <Tr>
+                                    <Th>Name</Th>
+                                    <Th>Email</Th>
+                                    <Th>Phone Number</Th>
+                                    <Th>Address</Th>
+                                </Tr>
+                            </Thead>
+                            {fetchedData.map((student) => (
+                                <Tbody>
+                                    <Tr>
+                                        <Td>{student.name}</Td>
+                                        <Td>{student.email}</Td>
+                                        <Td>{student.phone_Number}</Td>
+                                        <Td>{student.address}</Td>
+                                    </Tr>
+                                </Tbody>))}
+                        </Table>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+    </>;
 };
