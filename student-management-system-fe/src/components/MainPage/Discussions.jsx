@@ -56,7 +56,7 @@ export const Discussions = () => {
         axios.get(url2).then((res) => {
             console.log("LOOK", res.data);
             setFetchedSingleData(res.data);
-
+            setShow(true);
 
 
         })
@@ -194,7 +194,7 @@ export const Discussions = () => {
 
             </div>}
 
-            {postShow && <div className="wrapper">
+            {show && postShow && <div className="wrapper">
                 <Heading size="1xl">Discussions > {localStorage.getItem('currentPostTitle')}</Heading>
                 <br></br>
                 <h2 className="account-header">Post View</h2>
