@@ -31,43 +31,41 @@ export const Discussions = () => {
 
     useEffect(() => {
         fetchProducts();
-        const interval = setInterval(() => {
-            fetchProducts();
-        }, 3000)
-        return()=>clearInterval(interval)
-    }, []);
+        fetchSingleProduct();
+    }, [boardShow, postShow]);
 
     let id = localStorage.getItem("id");
 
     const fetchProducts = async () => {
         const url = "http://localhost:5000/api/students/posts";
-        axios
-            .get(url)
-            .then((res) => {
-                console.log(res.data);
-                setFetchedData(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        axios.get(url).then((res) => {
+            console.log(res.data);
+            setFetchedData(res.data);
 
-        console.log("LOOK2");
-        const url2 =
-            "http://localhost:5000/api/students/posts/" +
-            localStorage.getItem("currentPostId").toString();
-        axios
-            .get(url2)
-            .then((res) => {
-                console.log("LOOK" + res.data);
-                setFetchedSingleData(res.data);
-                setShow(true);
-            })
+
+
+        })
             .catch((err) => {
                 console.log(err);
-            });
+            })
     };
 
-    const putReply = async (reply, id) => {
+    const fetchSingleProduct = async () => {
+        console.log("LOOK2");
+        const url2 = "http://localhost:5000/api/students/posts/" + localStorage.getItem('currentPostId').toString();
+        axios.get(url2).then((res) => {
+            console.log("LOOK", res.data);
+            setFetchedSingleData(res.data);
+
+
+
+        })
+            .catch((err) => {
+                console.log(err);
+            })
+    };
+
+    const putReply = async (reply, id, currDate) => {
         const url = "http://localhost:5000/api/students/replyPosts/" + id;
         const response = await fetch(url, {
             method: "PUT",
@@ -75,7 +73,8 @@ export const Discussions = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                content: reply,
+                "content": reply,
+                "date": currDate
             }),
         });
         const data = await response.json();
@@ -111,9 +110,9 @@ export const Discussions = () => {
 
     const handleClick = (event, title, id) => {
         event.preventDefault();
-        localStorage.setItem("currentPostTitle", title);
-        localStorage.setItem("currentPostId", id);
-        fetchProducts();
+        localStorage.setItem('currentPostTitle', title);
+        localStorage.setItem('currentPostId', id);
+        fetchSingleProduct();
         setPostShow(true);
         setBoardShow(false);
     };
@@ -121,9 +120,19 @@ export const Discussions = () => {
     const handleReply = (event, reply, id) => {
         event.preventDefault();
 
-        document.getElementById("replyField").value = "";
 
-        putReply(reply, id);
+
+        if (reply) {
+            const currDate = new Date().toISOString().slice(0, 10)
+            document.getElementById('replyField').value = "";
+            console.log(currDate)
+            putReply(reply, id, currDate);
+
+            setTimeout(() => fetchSingleProduct(), 300);
+
+        }
+
+
 
 
         fetchProducts();
@@ -149,201 +158,105 @@ export const Discussions = () => {
         setBoardShow(false);
     }
 
-    function handleBackout(e) {
-        e.preventDefault();
-        setCreateShow(false);
+    function handleBack() {
         setPostShow(false);
         setBoardShow(true);
+        setCreateShow(false);
     }
 
     console.log("data: ", fetchedSingleData);
+    /* Discussion Overview */
     return (
         <>
-            {boardShow && (
-                <div>
-                    <h2 className="account-header">Discussion Board</h2>
+            {boardShow && <div>
+                <Heading className="disc-heading" as='h3' size="md"  >Discussions</Heading>
+                <div className="disc-title">
+                    <h2>Topic</h2>
+                </div>
+                <section className="disc-topic-background">
                     <br />
                     <div className="display-posts">
-                        <button id="createButton" onClick={handleCreate}>
-                            Create Post
-                        </button>
-                        <br />
-                        <br />
-                        <Table>
-                            {fetchedData.map((post) => (
-                                <Tbody>
-                                    <Thead
-                                        className="display-single-post-header-board"
-                                        onClick={(event) =>
-                                            handleClick(
-                                                event,
-                                                post.post_title,
-                                                post._id
-                                            )
-                                        }
-                                    >
-                                        <Tr>
-                                            <Th className="post">{post.post_title}</Th>
-                                        </Tr>
-                                    </Thead>
+                        {fetchedData.map((post, index) => (
+                            <div key={index} className="display-post-wrapper" onClick={event => handleClick(event, post.post_title, post._id)} style={{ cursor: 'pointer' }}>
 
-                                    <tr
-                                        className="display-single-post-spacer"
-                                        colSpan="2"
-                                    ></tr>
-                                </Tbody>
-                            ))}
-                        </Table>
-                    </div>
-                </div>
-            )}
-            {show && postShow && (
-                <div>
-                    <table>
-                        <tr>
-                            <td className="discussion-directory-clickable" onClick={handleBackout}>
-                                <Heading size="1xl">
-                                    Discussions
-                                </Heading>
-                            </td>
-                            <td>
-                                <Heading size="1xl">
-                                    > {localStorage.getItem("currentPostTitle")}
-                                </Heading>
-                            </td>
+                                <div className="display-post-title">
+                                    {post?.post_title}
+                                </div>
+                                <div className="display-post-description">
+                                    {post?.post_description}
+                                </div>
 
-                        </tr>
-                    </table>
-
-                    <br></br>
-                    <h2 className="account-header">Post View</h2>
-                    <Table className="display-posts">
-                        <Tbody>
-                            <div className="display-single-post">
-                                <Thead className="display-single-post-header">
-                                    <Tr>
-                                        <Th>
-                                            {fetchedSingleData.post.post_title}
-                                        </Th>
-                                    </Tr>
-                                </Thead>
-                                <Tr>
-                                    <Th>
-                                        {
-                                            fetchedSingleData.post
-                                                .post_description
-                                        }
-                                    </Th>
-                                </Tr>
                             </div>
-                            <tr
-                                className="display-single-post-spacer"
-                                colSpan="2"
-                            ></tr>
-                            <Tr className="display-single-post-replybox">
-                                <div id="replyBox">
-                                    <textarea
-                                        type="text"
-                                        id="replyField"
-                                    ></textarea>
-                                    <button
-                                        id="replyButton"
-                                        onClick={(event) =>
-                                            handleReply(
-                                                event,
-                                                document.getElementById(
-                                                    "replyField"
-                                                ).value,
-                                                fetchedSingleData.post._id
-                                            )
-                                        }
-                                    >
-                                        Reply
-                                    </button>
-                                </div>
-                            </Tr>
-                            <tr
-                                className="display-single-post-spacer"
-                                colSpan="2"
-                            ></tr>
-                            <Thead className="display-single-post-replies">
-                                <Tr>
-                                    <Th>Replies</Th>
-                                </Tr>
-                            </Thead>
-                            {fetchedSingleData.post.replies.map((post) => (
-                                <div>
-                                    <div className="display-single-post">
-                                        <Tr>
-                                            <Th>{post}</Th>
-                                        </Tr>
-                                    </div>
-                                    <tr
-                                        className="display-single-post-spacer"
-                                        colSpan="2"
-                                    ></tr>
-                                </div>
-                            ))}
-                        </Tbody>
-                    </Table>
-                </div>
-            )}
-            {createShow && (
-                <div>
-                    <table>
-                        <tr>
-                            <td className="discussion-directory-clickable" onClick={handleBackout}>
-                                <Heading size="1xl">
-                                    Discussions
-                                </Heading>
-                            </td>
-                            <td>
-                                <Heading size="1xl">
-                                    > create
-                                </Heading>
-                            </td>
+                        ))}
+                    </div>
+                </section>
+                <button id="createButton" onClick={handleCreate}>Create</button>
 
-                        </tr>
-                    </table>
-                    <br></br>
-                    <h2 className="account-header">Create Post</h2>
+            </div>}
+
+            {postShow && <div className="wrapper">
+                <Heading size="1xl">Discussions > {localStorage.getItem('currentPostTitle')}</Heading>
+                <br></br>
+                <h2 className="account-header">Post View</h2>
+                <section className="disc-background">
+                    <div className="post-background">
+                        <h1 className="post-title">
+                            {fetchedSingleData.post.post_title}
+                        </h1>
+
+                        <div className="post-description">
+                            {fetchedSingleData.post.post_description}
+
+                        </div>
+                        <div id="replyBox">
+                            <textarea type="text" placeholder="What's your reply..." id="replyField"></textarea>
+                            <div className="button-box">
+                                <button id="replyButton" onClick={event => handleReply(event, document.getElementById('replyField').value, fetchedSingleData.post._id)}>Reply</button>
+                            </div>
+                        </div>
+
+                        {fetchedSingleData.post.replies.map((post, index) => (
+                            <div key={index} className="post-single-post-bg">
+                                <div className="post-single-post">
+                                    <div className="post-user-date">{post?.date.slice(0, 10)}</div>
+                                    <div className="post-user-replies">{post?.reply}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+                <button id="backButton" onClick={() => handleBack()}>Back</button>
+            </div>}
+            {createShow && <div>
+                <Heading size="1xl">Discussion > Create</Heading>
+                <br></br>
+                <h2 className="account-header">Create Post</h2>
+                <section className="disc-background">
                     <br />
                     <Table>
                         <Tbody className="display-posts">
-                            <tr>
-                                <Th>Title</Th>
-                            </tr>
+                            <tr><Th>Title</Th></tr>
                             <Tr className="display-single-post-replybox">
-                                <input
-                                    type="text"
-                                    id="titleField"
-                                ></input>
+                                <textarea type="text" placeholder="Enter title" id="titleField"></textarea>
                             </Tr>
                             <br />
-                            <tr>
-                                <Th>Description</Th>
-                            </tr>
+                            <tr><Th>Description</Th></tr>
                             <Tr className="display-single-post-replybox">
-                                <textarea type="text" id="descField"></textarea>
+                                <textarea type="text" placeholder="Describe your question..." id="descField"></textarea>
                             </Tr>
                             <br />
                             <Tr className="display-single-post-replybox">
-                                <button 
-                                    id="createButton"
-                                    onClick={handleCreateSubmit}
-                                >
-                                    Post
-                                </button>
+                                <button id="createButton" onClick={handleCreateSubmit}>Post</button>
+                                <button id="backButton" onClick={() => handleBack()}>Back</button>
                             </Tr>
-
-                            <tr
-                                className="display-single-post-spacer"
-                                colSpan="2"
-                            ></tr>
+                            <tr class="display-single-post-spacer" colspan="2"></tr>
+                            
                         </Tbody>
                     </Table>
-                </div>
-            )}
+                </section>
+                
+            </div>}
+
         </>
     );
 };

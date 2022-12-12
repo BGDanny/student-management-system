@@ -358,7 +358,8 @@ const removeCourse = asynHandler(async (req, res) => {
 const replyPost = asynHandler(async (req, res) => {
     console.log(req.params.id);
     const postID = req.params.id;
-    Post.findOneAndUpdate({_id: req.params.id}, {$push: {replies: req.body.content}}).exec(async function(err)
+    const reply = {reply : req.body.content, date:req.body.date};
+    Post.findOneAndUpdate({_id: req.params.id}, {$push: {replies: reply}}).exec(async function(err)
     {
         if(err)
         {

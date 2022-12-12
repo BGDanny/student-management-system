@@ -11,7 +11,8 @@ const postSchema = new mongoose.Schema({
         required: true
     },
     replies: [{
-        type: String
+        reply: String,
+        date: Date
     }]
 },
     {collection: 'posts'}
