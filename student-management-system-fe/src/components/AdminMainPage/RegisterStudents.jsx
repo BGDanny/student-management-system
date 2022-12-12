@@ -85,6 +85,7 @@ export const RegisterStudents = () => {
     return <>
         <h1 className="reg-student-title">Register Student</h1>
         <section className="reg-student-bg">
+            <div className="flex-cont">
             <div className="reg-form-container">
                 <form className="register-form-title" onSubmit={submitHandler}>
                     <div>
@@ -155,11 +156,8 @@ export const RegisterStudents = () => {
                             </td>
                         </tr>
                     </table>
-
-
-
-
                 </form>
+                </div>
             </div>
         </section>
     </>;

@@ -271,3 +271,29 @@
     resize: none;
 }
 
+
+@media screen and (max-width: 720px) {
+    #titleField {
+        padding: 5px 10px;
+        height: 40px;
+        width: 68%;
+        border-radius: 10px;
+        resize: none;
+        padding: 5px;
+    }
+
+    #descField {
+        margin-left: 10px;
+        padding: 5px 10px;
+        height: 400px;
+        width: 68%;
+        border-radius: 10px;
+        resize: none;
+    }
+
+    .buttonsls {
+        margin: auto;
+        margin-right: 20%;
+    }
+
+}

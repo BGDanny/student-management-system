@@ -106,3 +106,37 @@
     border-radius: 5px;
     background-color:#efefef;
 }
+
+.flex-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    gap: 50px;
+}
+
+
+@media screen and (max-width: 720px) {
+    .flex-cont {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        gap: 0px;
+    }
+
+    .register-form-title{
+        width: 100%;
+    }
+
+    .reg-form-container {
+        width: 100%;
+        margin: auto;
+        margin-top: 5px;
+    }
+
+    .reg-remove-container {
+        width: 100%;
+        margin: auto;
+        margin-bottom: 5px;
+    }
+}

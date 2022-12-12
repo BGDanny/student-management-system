@@ -147,10 +147,10 @@ export const EnrollCourses = () => {
                                 <div>Course Name:
                                     <p>{courseDesc}</p>
                                 </div>
-                                <div className="section1-year">Year :
+                                <div >Year :
                                     <p>{courseYear}</p>
                                 </div>
-                                <div className="section1-semester">Semester:
+                                <div >Semester:
                                     <p>{courseSem}</p>
                                 </div>
                             </div>
@@ -158,7 +158,6 @@ export const EnrollCourses = () => {
                                 <div>Instructor:
                                     <p>{courseInst}</p>
                                 </div>
-                                
                                 <div>Location:
                                     <p>{location}</p>
                                 </div>

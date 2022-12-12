@@ -88,9 +88,24 @@
 }
 
 .en-buttons {
-
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
+}
 
+@media screen and (max-width: 800px) {
+    .section1 {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .section1 p {
+        padding: 0;
+        margin: 0;
+    }
+
+    .enroll-search-bg {
+        margin-bottom: 15%;
+    }
 }

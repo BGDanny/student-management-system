@@ -251,7 +251,7 @@ export const Discussions = () => {
                                 <textarea type="text" placeholder="Describe your question..." id="descField"></textarea>
                             </Tr>
                             <br />
-                            <Tr className="display-single-post-replybox">
+                            <Tr className="buttonsls">
                                 <button id="createButton" onClick={handleCreateSubmit}>Post</button>
                                 <button id="backButton" onClick={() => handleBack()}>Back</button>
                             </Tr>
