@@ -22,6 +22,10 @@ export const Dashboard = () => {
 
     useEffect(() => {
         fetchProducts();
+        const interval = setInterval(() => {
+            fetchProducts();
+        }, 3000)
+        return()=>clearInterval(interval)
     }, []);
 
     let id = localStorage.getItem("id");
