@@ -43,3 +43,10 @@
     justify-content: center;
     gap: 50px;
 }
+
+
+@media screen and (max-width: 720px) {
+    .section1 {
+        margin-bottom: 3%;
+    }
+}
