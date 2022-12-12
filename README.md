@@ -53,13 +53,7 @@ $ npm install -D tailwindcss
 
 
 Install Chakra:
-
-$ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion 
-
-
-
-
 ```bash
-
+$ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion 
 
 ```
