@@ -22,7 +22,6 @@ Open two terminals and on first terminal  Install npm packages for backend:
 $ cd backend
 $ npm i
 
-
 ```
 
 Open second terminal and Install npm packages for frontend:
