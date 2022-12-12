@@ -89,7 +89,6 @@ export const RegisterStudents = () => {
                     <form className="register-form" onSubmit={submitHandler}>
                         <div>
                             <h1 className="register-Header">
-                                {" "}
                                 Register Student
                             </h1>
                         </div>
@@ -101,6 +100,7 @@ export const RegisterStudents = () => {
                                 name="name"
                                 placeholder="Enter Student's Name"
                                 size={25}
+                                className="brd"
                                 onChange={(e) => setName(e.target.value)}
                                 required
                             ></input>
@@ -111,6 +111,7 @@ export const RegisterStudents = () => {
                             <input
                                 type="email"
                                 name="email"
+                                className="brd"
                                 placeholder="Enter Student's Email"
                                 size={25}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -124,6 +125,7 @@ export const RegisterStudents = () => {
                                 type="text"
                                 name="phoneNumber"
                                 placeholder="Enter Student's Phone Number"
+                                className="brd"
                                 size={25}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
                                 required
@@ -136,6 +138,7 @@ export const RegisterStudents = () => {
                                 type="text"
                                 name="address"
                                 placeholder="Enter Student's Address"
+                                className="brd"
                                 size={25}
                                 onChange={(e) => setAddress(e.target.value)}
                                 required
@@ -148,6 +151,7 @@ export const RegisterStudents = () => {
                                 type="password"
                                 name="pswd"
                                 placeholder=" Password"
+                                className="brd"
                                 size={25}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -160,6 +164,7 @@ export const RegisterStudents = () => {
                                 type="password"
                                 name="cpswd"
                                 placeholder=" Confirm Password"
+                                className="brd"
                                 size={25}
                                 onChange={(e) =>
                                     setConfPassword(e.target.value)

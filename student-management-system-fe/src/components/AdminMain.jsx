@@ -7,6 +7,7 @@ import {
     ViewStudents,
     ViewSections
 } from "./AdminMainPage";
+import { Box } from "@chakra-ui/react";
 
 export const AdminMain = () => {
     const { page } = usePageContext();
@@ -27,5 +28,5 @@ export const AdminMain = () => {
                 return <ViewStudents />;
         }
     };
-    return renderMainPage();
+    return <Box paddingTop={5} paddingX={2}>{renderMainPage()}</Box>;
 };
