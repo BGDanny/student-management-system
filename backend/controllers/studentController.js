@@ -375,7 +375,7 @@ const replyPost = asynHandler(async (req, res) => {
             }
             else
             {
-            res.json("Post does not exits");
+            res.json("Post does not exist");
             }
         }
     })
@@ -384,7 +384,6 @@ const replyPost = asynHandler(async (req, res) => {
 
 const allPosts = asynHandler(async (req, res) => {
     const data = await Post.find();
-    console.l
     res.json(data);
 })
 
@@ -454,7 +453,7 @@ const editStudent = asynHandler(async (req, res) => {
         }
         else 
         {
-            res.json("Inavlid Phone Number");
+            res.json("Invalid Phone Number");
         }
 
     }
@@ -526,7 +525,7 @@ const addGrades = asynHandler(async (req, res) => {
     }
     else 
     {
-        res.json("User does not exits");
+        res.json("User does not exist");
     }
 })
 

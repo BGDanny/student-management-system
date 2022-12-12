@@ -32,6 +32,12 @@ export const Discussions = () => {
     useEffect(() => {
         fetchProducts();
         fetchSingleProduct();
+        const interval = setInterval(() => {
+            fetchProducts();
+            fetchSingleProduct();
+        }, 1000)
+        return()=>clearInterval(interval)
+        fetchProducts();
     }, [boardShow, postShow]);
 
     let id = localStorage.getItem("id");

@@ -1,7 +1,7 @@
 db.admin.insertMany([
   {
     _id: 001,
-    name: "Stackey",
+    name: "Stacey",
     role: "registrar",
     email: "stacey@yahoo.com",
     password: "seng513"

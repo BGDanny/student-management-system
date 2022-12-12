@@ -31,7 +31,7 @@ export const EnrollCourses = () => {
     const [courseStart, setCourseStart] = useState();
     const [courseEnd, setCourseEnd] = useState();
     const [location, setLocation] = useState();
-
+    const {sendAlert} = useAlertContext();
     const [show, setShow] = useState(false);
     const [avail, setAvail] = useState(false);
 
@@ -90,10 +90,10 @@ export const EnrollCourses = () => {
 
         const data = await response.json();
         if (data) {
-            alert("Course is enrolled successfully");
+            sendAlert("Course is enrolled successfully", "success");
         }
         else {
-            alert("Course is already Enrolled");
+            sendAlert("Course is already Enrolled", "error");
         }
     }
 
