@@ -47,7 +47,6 @@ export const ViewSections = () => {
                  <section className="view-student-background">
             <section className="view-student-grid">
                 <div className="view-student-table">
-                    <h3>Enrolled courses</h3>
                 <div>
                 <Table variant="simple">
                 <Thead>

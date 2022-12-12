@@ -127,7 +127,7 @@ export const RegisterStudents = () => {
             <br></br>
             <div className="reg-remove-container">
                 <div>
-                    <h1 className="remove-title">REMOVE STUDENT</h1>
+                    <h1 className="remove-title">Remove Student</h1>
                 </div>
                 <form className="remove-section" onSubmit={removeHandler}>
                     <table>
@@ -151,7 +151,7 @@ export const RegisterStudents = () => {
                             <td>
 
 
-                                <Button type="submit" colorScheme='red' className="remove-btn">Remove Section</Button>
+                                <Button type="submit" colorScheme='red' className="remove-btn">Remove Student</Button>
 
                             </td>
                         </tr>
