@@ -82,138 +82,85 @@ export const RegisterStudents = () => {
         sendAlert(JSON.stringify(data));
     }
 
-    return (
-        <>
-            <div>
-                <div className="form-container">
-                    <form className="register-form" onSubmit={submitHandler}>
-                        <div>
-                            <h1 className="register-Header">
-                                Register Student
-                            </h1>
-                        </div>
-                        <br></br>
-                        <div>
-                            <label>Name: </label>
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Enter Student's Name"
-                                size={25}
-                                className="brd"
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                            ></input>
-                        </div>
-                        <br />
-                        <div>
-                            <label>Email: </label>
-                            <input
-                                type="email"
-                                name="email"
-                                className="brd"
-                                placeholder="Enter Student's Email"
-                                size={25}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            ></input>
-                        </div>
-                        <br />
-                        <div>
-                            <label>Phone Number: </label>
-                            <input
-                                type="text"
-                                name="phoneNumber"
-                                placeholder="Enter Student's Phone Number"
-                                className="brd"
-                                size={25}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
-                                required
-                            ></input>
-                        </div>
-                        <br />
-                        <div>
-                            <label>Address: </label>
-                            <input
-                                type="text"
-                                name="address"
-                                placeholder="Enter Student's Address"
-                                className="brd"
-                                size={25}
-                                onChange={(e) => setAddress(e.target.value)}
-                                required
-                            ></input>
-                        </div>
-                        <br />
-                        <div>
-                            <label>Password: </label>
-                            <input
-                                type="password"
-                                name="pswd"
-                                placeholder=" Password"
-                                className="brd"
-                                size={25}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            ></input>
-                        </div>
-                        <br />
-                        <div>
-                            <label>Confirm Password: </label>
-                            <input
-                                type="password"
-                                name="cpswd"
-                                placeholder=" Confirm Password"
-                                className="brd"
-                                size={25}
-                                onChange={(e) =>
-                                    setConfPassword(e.target.value)
-                                }
-                                required
-                            ></input>
-                        </div>
-                        <br />
-                        <div>
-                            <Button
-                                type="submit"
-                                colorScheme="blue"
-                                className="butn"
-                            >
-                                Register Student
-                            </Button>
-                        </div>
-                    </form>
-                </div>
-                <br></br>
-                <br></br>
-                <div className="remove-container">
+    return <>
+        <h1 className="reg-student-title">Register Student</h1>
+        <section className="reg-student-bg">
+            <div className="reg-form-container">
+                <form className="register-form-title" onSubmit={submitHandler}>
                     <div>
-                        <h1 className="Add-header">REMOVE STUDENT</h1>
+                        <h1 className="register-Header"> Register Student Form</h1>
                     </div>
-                    <form className="remove-section" onSubmit={removeHandler}>
-                        <div>
-                            <select
-                                type="text"
-                                name="courses"
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            >
-                                <option></option>
-                                {fetchedData.map((student) => (
-                                    <option value={student.email}>
-                                        {student.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <Button type="submit" colorScheme="red">
-                                Remove Student
-                            </Button>
-                        </div>
-                    </form>
-                </div>
+                    <div>
+                        <label>Name:</label>
+                        <input type="text" name="name" placeholder=" Enter Student's Name" size={25} onChange={(e) => setName(e.target.value)} required></input>
+                    </div>
+                    <div>
+                        <label>Email: </label>
+                        <input type="email" name="email" placeholder=" Enter Student's Email" size={25} onChange={(e) => setEmail(e.target.value)} required></input>
+                    </div>
+                    <div>
+                        <label>Phone Number:</label>
+                        <input type="text" name="phoneNumber" placeholder=" Enter Student's Phone Number" size={25} onChange={(e) => setPhoneNumber(e.target.value)} required></input>
+                    </div>
+
+                    <div>
+                        <label>Address: </label>
+                        <input type="text" name="address" placeholder=" Enter Student's Address" size={25} onChange={(e) => setAddress(e.target.value)} required></input>
+                    </div>
+
+                    <div>
+                        <label>Password: </label>
+                        <input type="password" name="pswd" placeholder=" Password" size={25} onChange={(e) => setPassword(e.target.value)} required></input>
+                    </div>
+
+                    <div>
+                        <label>Confirm Password: </label>
+                        <input type="password" name="cpswd" placeholder=" Confirm Password" size={25} onChange={(e) => setConfPassword(e.target.value)} required></input>
+                    </div>
+                    <div>
+                        <Button type="submit" colorScheme='blue' className="butn">Register Student</Button>
+                    </div>
+                </form>
             </div>
-        </>
-    );
+            <br></br>
+            <br></br>
+            <div className="reg-remove-container">
+                <div>
+                    <h1 className="remove-title">REMOVE STUDENT</h1>
+                </div>
+                <form className="remove-section" onSubmit={removeHandler}>
+                    <table>
+                        <tr>
+                            <td>
+                                <p className="rem-text">Select Student</p>
+                            </td>
+
+                        </tr>
+                       
+                        <tr>
+                            <td>
+                                <select type="text" name='courses' onChange={(e) => setEmail(e.target.value)} required>
+                                    <option></option>
+                                    {fetchedData.map((student) => (<option value={student.email}>{student.name}</option>))}
+                                </select>
+                            </td>
+                        </tr>
+                        <br></br>
+                        <tr>
+                            <td>
+
+
+                                <Button type="submit" colorScheme='red' className="remove-btn">Remove Section</Button>
+
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+                </form>
+            </div>
+        </section>
+    </>;
 };
