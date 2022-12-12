@@ -34,7 +34,6 @@ export const EnrollCourses = () => {
 
     const [show, setShow] = useState(false);
     const [avail, setAvail] = useState(false);
-    const { sendAlert } = useAlertContext();
 
     function showCourses(e) {
         e.preventDefault();
@@ -49,155 +48,141 @@ export const EnrollCourses = () => {
     }, []);
 
     const fetchCourses = async () => {
-        const url =
-            "http://localhost:5000/api/students/searchCourses/" + courseName;
-        axios
-            .get(url)
-            .then((res) => {
-                console.log("The data is " + res.data);
-                if (res.data != null) {
-                    setFetchedData(res.data);
-                    setCourseId(res.data._id);
-                    setCourseDesc(res.data.course_id.course_Description);
-                    setCourseYear(res.data.year);
-                    setCourseSem(res.data.semester);
-                    setCourseInst(res.data.instructor);
-                    setCourseday(res.data.day);
-                    setCourseStart(res.data.start_time);
-                    setCourseEnd(res.data.end_time);
-                    setLocation(res.data.location);
-                } else {
-                    setAvail(true);
-                    setShow(false);
-                }
-            })
+        const url = "http://localhost:5000/api/students/searchCourses/" + courseName;
+        axios.get(url).then((res) => {
+            console.log("The data is " + res.data);
+            if (res.data != null) {
+                setFetchedData(res.data);
+                setCourseId(res.data._id);
+                setCourseDesc(res.data.course_id.course_Description);
+                setCourseYear(res.data.year);
+                setCourseSem(res.data.semester);
+                setCourseInst(res.data.instructor);
+                setCourseday(res.data.day);
+                setCourseStart(res.data.start_time);
+                setCourseEnd(res.data.end_time);
+                setLocation(res.data.location);
+            }
+            else {
+                setAvail(true);
+                setShow(false);
+            }
+        })
             .catch((err) => {
                 console.log(err);
-            });
+            })
     };
 
     async function handleEnroll(e) {
         e.preventDefault();
         let section = courseId;
-        let id = localStorage.getItem("id");
-        const url = "http://localhost:5000/api/students/sections/" + id;
+        let id = localStorage.getItem('id');
+        const url = 'http://localhost:5000/api/students/sections/' + id;
         const response = await fetch(url, {
-            method: "PUT",
+            method: 'PUT',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                section,
+                section
             }),
         });
 
         const data = await response.json();
         if (data) {
-            sendAlert("Course is enrolled successfully", "success");
-        } else {
-            sendAlert("Course is already Enrolled", "error");
+            alert("Course is enrolled successfully");
+        }
+        else {
+            alert("Course is already Enrolled");
         }
     }
 
     async function handleRemove(e) {
         e.preventDefault();
         let section = courseId;
-        let id = localStorage.getItem("id");
-        const url = "http://localhost:5000/api/students/sections/" + id;
+        let id = localStorage.getItem('id');
+        const url = 'http://localhost:5000/api/students/sections/' + id;
         const response = await fetch(url, {
-            method: "DELETE",
+            method: 'DELETE',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                section,
+                section
             }),
         });
         const data = await response.json();
         if (data) {
-            sendAlert("Course is removed successfully", "success");
-        } else {
-            sendAlert("Course does not exist", "error");
+            alert("Course is removed successfully");
+        }
+        else {
+            alert("Course doesnot Exists");
         }
     }
 
-    return (
-        <>
-            <div>
+    return <>
+        <div>
+            <h1 className="enroll-title">Enroll Courses</h1>
+            <section className="enroll-bg">
                 <div className="search-container">
                     <div className="search">
-                        <InputGroup>
-                            <Input
-                                type="text"
-                                placeholder="Search"
-                                variant="filled"
-                                onChange={(e) => setCourseName(e.target.value)}
-                            />
+                        <InputGroup className="search-wrapper" >
+                            <Input type="text" placeholder="Search" variant="filled" onChange={(e) => setCourseName(e.target.value)} />
                         </InputGroup>
                     </div>
                     <div class="bton">
-                        <Button colorScheme="blue" onClick={showCourses}>
-                            Search
-                        </Button>
+                        <Button colorScheme='blue' onClick={showCourses} >Search</Button>
                     </div>
+
                 </div>
-                <div>
-                    {courseName.length > 0 && show && (
+            </section>
+            <section className="enroll-search-bg">
+                    <div className="enroll-title">Search Results:</div> 
+                    {courseName.length > 0 && show &&
                         <div className="showCourse">
                             <div className="section1">
-                                <div>
-                                    <p>Section ID: {courseId}</p>
+                                <div>Section ID:
+                                    <p>{courseId}</p>
                                 </div>
-                                <div>
-                                    <p>Course Name: {courseDesc}</p>
+                                <div>Course Name:
+                                    <p>{courseDesc}</p>
                                 </div>
-                                <div>
-                                    <p>Year : {courseYear}</p>
+                                <div className="section1-year">Year :
+                                    <p>{courseYear}</p>
                                 </div>
-                                <div>
-                                    <p>Semester: {courseSem}</p>
+                                <div className="section1-semester">Semester:
+                                    <p>{courseSem}</p>
                                 </div>
                             </div>
                             <div className="section1">
-                                <div>
-                                    <p>Instructor: {courseInst}</p>
+                                <div>Instructor:
+                                    <p>{courseInst}</p>
                                 </div>
-                                <div>
-                                    <p>Location: {location}</p>
+                                
+                                <div>Location:
+                                    <p>{location}</p>
                                 </div>
-                                <div>
-                                    <p>Day: {courseDay}</p>
+                                <div>Day:
+                                    <p>{courseDay}</p>
                                 </div>
-                                <div>
-                                    <p>Start Time: {courseStart}</p>
+                                <div>Start Time:
+                                    <p>{courseStart}</p>
                                 </div>
-                                <div>
-                                    <p>End Time: {courseEnd}</p>
+                                <div>End Time: 
+                                    <p>{courseEnd}</p>
                                 </div>
                             </div>
-                        </div>
-                    )}
-                    {courseName.length > 0 && show && (
+                        </div>}
+                    {courseName.length > 0 && show &&
                         <div className="en-buttons">
-                            <Button
-                                colorScheme="blue"
-                                onClick={handleEnroll}
-                            >
-                                Enroll
-                            </Button>                      
-                        </div>
-                    )}
-                </div>
+                            <Button colorScheme='blue' onClick={handleEnroll}>Enroll</Button>
+                        </div>}
                 <div>
-                    {avail && !show && (
-                        <div>
-                            <p className="not-available">
-                                The course section is not available
-                            </p>
-                        </div>
-                    )}
+                    {avail && !show && <div>
+                        <p className="not-available">The course section is not available</p></div>}
                 </div>
-            </div>
-        </>
-    );
+            </section>
+        </div>
+    </>;
+
 };
