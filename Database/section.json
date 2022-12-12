@@ -40,7 +40,7 @@ db.section.insertMany([
     year: 2023,
     semester: "Winter",
     instructor: "Singh",
-    day: "Mopnday",
+    day: "Monday",
     students_id: [ObjectId("6377f37d1721db0b944ba451")],
     location: "Eng 024",
     course_id: 115,
