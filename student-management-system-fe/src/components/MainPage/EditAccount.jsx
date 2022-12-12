@@ -58,16 +58,8 @@ export const EditAccount = () => {
     return (
         <>
             <div className="EditPageTopDiv">
-                <meta
-                    className="viewport"
-                    content="width=device-width, intial-scale=1"
-                ></meta>
-                <div className="EditPageBackground"></div>
-
                 <div className="EditPageContent">
                     <center>
-                        <h1 className="EditPageHeading">Edit Information</h1>
-
                         <form className="EditPageForm">
                             <h2>
                                 <strong>Edit Personal Information:</strong>
@@ -106,8 +98,9 @@ export const EditAccount = () => {
                             >
                                 Update Personal Information
                             </button>
-
                             <br></br>
+                            <br></br>
+
                             <br></br>
                             <h2>
                                 <strong>Edit Password:</strong>

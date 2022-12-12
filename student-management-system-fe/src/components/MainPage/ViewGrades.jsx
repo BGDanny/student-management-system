@@ -47,11 +47,13 @@ export const ViewGrades = () => {
 
     return (
         <>
-            <Heading size="1xl">Grades Section</Heading>
-            <Text>Grades</Text>
-            <TableContainer>
-                <Table variant="simple">
-                    <Thead>
+            <Heading size="lg">Grades Section</Heading>
+            <Text color={"#5E81F4"} fontWeight="bold" marginY={3}>
+                Grades
+            </Text>
+            <TableContainer borderRadius={25}>
+                <Table variant="simple" >
+                    <Thead bgColor={"#FFC670"}>
                         <Tr>
                             <Th>Course Code</Th>
                             <Th>Course Name</Th>

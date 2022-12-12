@@ -1,8 +1,4 @@
 .EditPageContent {
-    min-height: 100vh;
-    /* min-height: 900px; */
-    /* margin-top: 3%; */
-    /* background-color: rgb(77, 189, 76); */
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -13,26 +9,12 @@
 }
 
 .EditPageHeading {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
-.EditPageInsideDiv {
-    /* background-color: red;
-height: 200px; */
-}
 
 .EditPageTopButton {
     margin-bottom: 50px;
-}
-
-.EditPageTopDiv {
-    background-color: rgba(192, 223, 223, 0.911);
-}
-
-.EditPageForm {
-    /* background-color: bisque; */
-    min-height: 100vh;
-    margin-top: 100px;
 }
 
 #Address {
