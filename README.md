@@ -21,7 +21,7 @@ Open two terminals and on first terminal  Install npm packages for backend:
 ```bash
 $ cd backend
 $ npm i
-
+$ nodemon server.js
 ```
 
 Open second terminal and Install npm packages for frontend:
@@ -30,7 +30,7 @@ Open second terminal and Install npm packages for frontend:
 
 $ cd student-management-system-fe 
 $ npm i
-
+$ npm start
 ```
 
 
