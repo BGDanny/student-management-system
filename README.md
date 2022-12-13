@@ -41,18 +41,3 @@ http://localhost:3000/
 
 ```
 
-
-Install Tailwind:
-
-
-```bash
-$ npm install -D tailwindcss
-
-```
-
-
-Install Chakra:
-```bash
-$ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion 
-
-```
