@@ -16,7 +16,7 @@ $ git clone https://github.com/BGDanny/student-management-system.git
 ```
 
 
-Open two terminals and on first terminal  Install npm packages for backend:
+Open two terminals and on first terminal, install npm packages for backend:
 
 ```bash
 $ cd backend
@@ -24,7 +24,7 @@ $ npm i
 $ nodemon server.js
 ```
 
-Open second terminal and Install npm packages for frontend:
+Open second terminal, install npm packages for frontend:
 
 ```bash
 
